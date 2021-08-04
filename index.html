@@ -32,38 +32,85 @@
     
   //called on change in colour selection list
   function updateCol(){
-    const modelViewerObject = document.getElementById("speaker");
+    // const modelViewerObject = document.getElementById("speaker");
 
-    const colorString = document.getElementById("color-controls").value;
+    
+
+    // const colorString = document.getElementById("color-controls").value;
     
  
-    if (!colorString) {
-      return;
-    }
+    // if (!colorString) {
+    //   return;
+    // }
 
-    const color = colorString.split(',')
-        .map(numberString => parseFloat(numberString));
+    // const color = colorString.split(',')
+    //     .map(numberString => parseFloat(numberString));
 
-    console.log('Changing color to: ', color);
+    // console.log('Changing color to: ', color);
     
     
-    let material = modelViewerObject.model.materials[6];
-    //material.pbrMetallicRoughness.setBaseColorFactor(color);
+    // let material = modelViewerObject.model.materials[6];
+    // //material.pbrMetallicRoughness.setBaseColorFactor(color);
     
     
-    //var finishName = document.getElementById('color-controls').text;
-    var e = document.getElementById("color-controls");
-    var finishName = e.options[e.selectedIndex].text;
+    // //var finishName = document.getElementById('color-controls').text;
+    // var e = document.getElementById("color-controls");
+    // var finishName = e.options[e.selectedIndex].text;
     
-    material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+    // material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
 
-    if (finishName === "Black Walnut"){
-      material.pbrMetallicRoughness.setRoughnessFactor(0.926);
-    }
-    else if (finishName === "Red Cherry"){
-      material.pbrMetallicRoughness.setRoughnessFactor(0.0);
-    }
+    // if (finishName === "Black Walnut"){
+    //   material.pbrMetallicRoughness.setRoughnessFactor(0.926);
+    // }
+    // else if (finishName === "Red Cherry"){
+    //   material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+    // }
+
+
     //NOTE TO SELF: Specular is assumed 1.0 by defalt.  Specular does not exist.  Simply controlled by roughness
+
+    /*
+    const highlightedItems = userList.querySelectorAll(".highlighted");
+
+    highlightedItems.forEach(function(userItem) {
+      deleteUser(userItem);
+    });
+    */
+
+    let speakers = document.querySelectorAll("#speaker")
+
+    speakers.forEach(function(speaker){
+      const colorString = document.getElementById("color-controls").value;
+    
+ 
+      if (!colorString) {
+        return;
+      }
+
+      const color = colorString.split(',')
+          .map(numberString => parseFloat(numberString));
+
+      console.log('Changing color to: ', color);
+      
+      
+      let material = speaker.model.materials[6];
+      //material.pbrMetallicRoughness.setBaseColorFactor(color);
+      
+      
+      //var finishName = document.getElementById('color-controls').text;
+      var e = document.getElementById("color-controls");
+      var finishName = e.options[e.selectedIndex].text;
+      
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+
+      if (finishName === "Black Walnut"){
+        material.pbrMetallicRoughness.setRoughnessFactor(0.926);
+      }
+      else if (finishName === "Red Cherry"){
+        material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+      }
+      
+    });
   }
 
   </script>
