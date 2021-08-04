@@ -25,8 +25,11 @@
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
 
-  <!-- duplicate of above for testing-->
   <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets\founder40b.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets\founder80f.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
 
@@ -95,7 +98,7 @@
       console.log('Changing color to: ', color);
       
       
-      let material = speaker.model.materials[6];
+      let material = speaker.model.materials[0];
       //material.pbrMetallicRoughness.setBaseColorFactor(color);
       
       
