@@ -19,6 +19,7 @@
   <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
     <option value="/Founder-Series/assets/textures/blackWalnut.jpg" selected="selected">Black Walnut</option>
     <option value="/Founder-Series/assets/textures/darkCherry.jpg">Dark Cherry</option>
+    <option value="/Founder-Series/assets/textures/walnut.jpg">Walnut</option>
   </select>
 
   <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets\founder40bStandPrototype.glb" onload="updateCol();" loading="eager">
@@ -48,6 +49,7 @@
     let speakers = document.querySelectorAll("#speaker")
 
     speakers.forEach(function(speaker){
+      
       const colorString = document.getElementById("color-controls").value;
     
  
@@ -79,16 +81,21 @@
         material.pbrMetallicRoughness.setRoughnessFactor(0.0);
         material.pbrMetallicRoughness.setMetallicFactor(0.0);
 
-        let colorString = "1,1,1";
+        // let colorString = "1,1,1";
 
-        if (!colorString) {
-          return;
-        }
+        // if (!colorString) {
+        //   return;
+        // }
 
-        const color = colorString.split(',')
-            .map(numberString => parseFloat(numberString));
+        // const color = colorString.split(',')
+        //     .map(numberString => parseFloat(numberString));
 
-        material.pbrMetallicRoughness.setBaseColorFactor(color);
+        // material.pbrMetallicRoughness.setBaseColorFactor(color);
+      }
+      else if (finishName === "Walnut")
+      {
+        material.pbrMetallicRoughness.setRoughnessFactor(0.8);
+        material.pbrMetallicRoughness.setMetallicFactor(1.0);
       }
       
     });
