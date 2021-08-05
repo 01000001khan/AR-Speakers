@@ -63,7 +63,7 @@
       var e = document.getElementById("color-controls");
       var finishName = e.options[e.selectedIndex].text;
       
-      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+      material.pbrMetallicRoughness['metallicRoughnessTexture'].texture.source.setURI(e.value);
 
       if (finishName === "Black Walnut"){
         material.pbrMetallicRoughness.setRoughnessFactor(0.926);
