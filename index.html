@@ -66,7 +66,8 @@
       material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
 
       if (finishName === "Black Walnut"){
-        material.pbrMetallicRoughness.setRoughnessFactor(0.926);
+        material.pbrMetallicRoughness.setRoughnessFactor(0.8);
+        material.pbrMetallicRoughness.setMetallicFactor(1.0);
       }
       else if (finishName === "Dark Cherry"){
         material.pbrMetallicRoughness.setRoughnessFactor(0.0);
