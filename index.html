@@ -36,9 +36,15 @@
 
   <script>
     
+  window.addEventListener("load", function(){
+    udpateCol();
+  });
+
   //called on change in colour selection list
   function updateCol(){
     
+
+
     let speakers = document.querySelectorAll("#speaker")
 
     speakers.forEach(function(speaker){
