@@ -67,9 +67,32 @@
 
       if (finishName === "Black Walnut"){
         material.pbrMetallicRoughness.setRoughnessFactor(0.926);
+        
+        let colorString = "0.5, 0.5, 0.5";
+
+        if (!colorString) {
+          return;
+        }
+
+        const color = colorString.split(',')
+            .map(numberString => parseFloat(numberString));
+
+        material.pbrMetallicRoughness.setBaseColorFactor(color);
+
       }
       else if (finishName === "Dark Cherry"){
         material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+
+        let colorString = "1,1,1";
+
+        if (!colorString) {
+          return;
+        }
+
+        const color = colorString.split(',')
+            .map(numberString => parseFloat(numberString));
+
+        material.pbrMetallicRoughness.setBaseColorFactor(color);
       }
       
     });
