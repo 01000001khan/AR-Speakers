@@ -54,13 +54,13 @@
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
-  <button style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; " onclick="toggleAnimation();">Play Animation</button>
+  <button onclick="toggleAnimation();">Play Animation</button>
   <script>
   
     function toggleAnimation(){
       let woofer = document.querySelector("#woofer");
 
-      woofer.play();
+      woofer.model.play();
     }
 
   //called on change in colour selection list
