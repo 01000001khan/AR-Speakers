@@ -21,7 +21,7 @@
     <option value="/Founder-Series/assets/textures/darkCherry.jpg">Dark Cherry</option>
     <option value="/Founder-Series/assets/textures/walnut.jpg" selected="selected">Walnut</option>
     <option value="/Founder-Series/assets/textures/blank.jpg">Piano Black</option>
-    <option value="/Founder-Series/assets/textures/UV.jpg">Non-existent Testing Material</option>
+    <option value="/Founder-Series/assets/textures/UV.jpg">Non-existent Debugging Material</option>
   </select>
 
   <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets\founder40bStandPrototype.glb" onload="updateCol();" loading="eager">
@@ -119,7 +119,7 @@
         material.pbrMetallicRoughness.setBaseColorFactor(color);
 
       }
-      else if (finishName === "Non-existent Testing Material")
+      else if (finishName === "Non-existent Debugging Material")
       {
         material.pbrMetallicRoughness.setRoughnessFactor(0.5);
         material.pbrMetallicRoughness.setMetallicFactor(1.0);
