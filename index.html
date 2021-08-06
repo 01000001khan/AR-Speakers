@@ -50,8 +50,19 @@
   <br>
   <!-- 120H goes here-->
 
+  <model-viewer id="woofer" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets\woofer.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+  <button style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; " onclick="toggleAnimation();"></button>
   <script>
   
+    function toggleAnimation(){
+      let woofer = document.querySelector("#woofer");
+
+      woofer.play();
+    }
+
   //called on change in colour selection list
   function updateCol(){
     
