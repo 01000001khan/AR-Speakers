@@ -66,14 +66,13 @@
       const color = colorString.split(',')
           .map(numberString => parseFloat(numberString));
 
-      console.log('Changing color to: ', color);
-      
+      //console.log('Changing color to: ', color);
+
       
       let material = speaker.model.materials[0];
-      //material.pbrMetallicRoughness.setBaseColorFactor(color);
+      material.pbrMetallicRoughness.setBaseColorFactor(color);
       
-      
-      //var finishName = document.getElementById('color-controls').text;
+      //Get current text value (name) of selected option
       var e = document.getElementById("color-controls");
       var finishName = e.options[e.selectedIndex].text;
       
@@ -105,10 +104,10 @@
       }
       else if (finishName === "Piano Black")
       {
-        material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+        material.pbrMetallicRoughness.setRoughnessFactor(1.0);
         material.pbrMetallicRoughness.setMetallicFactor(0.0);
 
-        let colorString = "0.1,0.1,0.1";
+        let colorString = "0,0,0";
 
         if (!colorString) {
           return;
@@ -125,16 +124,16 @@
         material.pbrMetallicRoughness.setRoughnessFactor(0.5);
         material.pbrMetallicRoughness.setMetallicFactor(1.0);
 
-        let colorString = "0.5,0.5,0.5";
+        // let colorString = "0.5,0.5,0.5";
 
-        if (!colorString) {
-          return;
-        }
+        // if (!colorString) {
+        //   return;
+        // }
 
-        const color = colorString.split(',')
-            .map(numberString => parseFloat(numberString));
+        // const color = colorString.split(',')
+        //     .map(numberString => parseFloat(numberString));
 
-        material.pbrMetallicRoughness.setBaseColorFactor(color);
+        // material.pbrMetallicRoughness.setBaseColorFactor(color);
       }
       
     });
