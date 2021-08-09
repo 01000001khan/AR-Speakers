@@ -26,6 +26,7 @@ color: white
     <option value="/Founder-Series/assets/textures/walnut.jpg" selected="selected">Walnut</option>
     <option value="/Founder-Series/assets/textures/blank.jpg">Piano Black</option>
     <option value="/Founder-Series/assets/textures/UV.jpg">Non-existent Debugging Material</option>
+    <option value="/Founder-Seires/assets/textures/blank.jpg">Experimental Material</option>
   </select>
 
   
@@ -160,6 +161,23 @@ color: white
         //     .map(numberString => parseFloat(numberString));
 
         // material.pbrMetallicRoughness.setBaseColorFactor(color);
+      }
+      else if (finishName === "Experimental Material")
+      {
+        material.pbrMetallicRoughness.setRoughnessFactor(0.5);
+        material.pbrMetallicRoughness.setMetallicFactor(1.0);
+                
+        let colorString = "0.5,0.5,0.5";
+
+        if (!colorString) {
+          return;
+        }
+
+        const color = colorString.split(',')
+            .map(numberString => parseFloat(numberString));
+
+        material.pbrMetallicRoughness.setBaseColorFactor(color);
+
       }
       
     });

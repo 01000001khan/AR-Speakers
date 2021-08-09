@@ -57,7 +57,7 @@ color: white
       const color = colorString.split(',')
           .map(numberString => parseFloat(numberString));
 
-      //console.log('Changing color to: ', color);
+      console.log('Changing color to: ', color);
 
       
       let material = speaker.model.materials[0];
@@ -67,6 +67,8 @@ color: white
       var e = document.getElementById("color-controls");
       var finishName = e.options[e.selectedIndex].text;
       
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("Founder-Series/assets/textues/blank.jpg");
+
       //material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
 
       // if (finishName === "Black Walnut"){
