@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device=width, initial-scale=1.0">
+  <title>Founder Series</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    model-viewer{
+      width: 90%;
+      height: 400px;
+      margin: 0 auto;
+      padding: 10;
+    }
+  </style>
+</head>
+<body 
+style="
+background-color:rgb(0, 20, 50); 
+color: white
+">
+  
+  <p>Defiance X15 Subwoofer</p>
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/defiancex/defiancex15.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+</body>
+</html>
