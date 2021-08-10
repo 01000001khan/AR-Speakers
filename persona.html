@@ -27,6 +27,7 @@ color: white
     <option value="1,0.5,0,1">Yellow Premium Finish</option>
     <option value="0,0.2,0.5,1">Blue Premium Finish</option>
     <option value="0.6,0,0,1">Red Premium Finish</option>
+    <option value="1,1,1">Non-Existent Testing Material</option>
   </select>
 
   <p>Persona B</p>
@@ -34,7 +35,7 @@ color: white
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
-  
+
   <p>Persona C</p>
   <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personac.glb" onload="updateCol();" loading="eager">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
@@ -94,6 +95,11 @@ color: white
       {
         material.pbrMetallicRoughness.setRoughnessFactor(0.0);
         material.pbrMetallicRoughness.setMetallicFactor(0.0);
+      }
+
+      if (finishName === "Non-Existent Testing Material")
+      {
+        material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("assets/textures/walnut.jpg");
       }
       
     });
