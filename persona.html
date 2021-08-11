@@ -22,12 +22,14 @@ color: white
   <link rel="shortcut icon" type="image/png" href="assets\textures\personaFavicon.png">
 
   <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
-    <option value="0.03,0.06,0.10,1">Blue</option>
-    <option value="1,1,0.8,1">White</option>
-    <option value="0.09,0.09,0.09,1" selected="selected">Gray</option>
-    <option value="1,0.5,0,1">Yellow Premium Finish</option>
-    <option value="0,0.2,0.5,1">Blue Premium Finish</option>
-    <option value="0.6,0,0,1">Red Premium Finish</option>
+    <option value="0.03,0.06,0.10">Blue</option>
+    <option value="1,1,0.8">White</option>
+    <option value="0.09,0.09,0.09" selected="selected">Gray</option>
+    <option value="0.12,0.12,0.12" selected="selected">AR-Optimized Gray</option>
+
+    <option value="1,0.5,0">Yellow Premium Finish</option>
+    <option value="0,0.2,0.5">Blue Premium Finish</option>
+    <option value="0.6,0,0">Red Premium Finish</option>
     <option value="1,1,1">Non-Existent Testing Material</option>
   </select>
 
@@ -62,7 +64,7 @@ color: white
   <br>
 
   <p>Persona Finishes Testing</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTesting.glb" onload="updateCol();">
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTesting.glb" onload="updateCol();">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
