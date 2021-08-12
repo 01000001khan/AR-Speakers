@@ -113,7 +113,7 @@ color: white
       var e = document.getElementById("color-controls");
       var finishName = e.options[e.selectedIndex].text;
       
-      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("assets/textures/blank.jpg");
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(null);
 
       //material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
 
