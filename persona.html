@@ -107,10 +107,13 @@ color: white
 
       //console.log('Changing color to: ', color);
 
-      
-      let material = speaker.model.materials[0];
+      //let material = speaker.model.materials[0];
+
       material.pbrMetallicRoughness.setBaseColorFactor(color);
       */
+
+      //Comment this variable declaration if uncommenting the above block of code
+      let material = speaker.model.materials[0];
       
       //Get current text value (name) of selected option
       var e = document.getElementById("color-controls");
