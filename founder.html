@@ -19,16 +19,16 @@ style="
 background-color:rgb(0, 20, 50); 
 color: white
 ">
-  <link rel="shortcut icon" type="image/png" href="/AR-Speakers/assets/textures/founderFavicon.png">
+  <link rel="shortcut icon" type="image/png" href="assets/textures/founderFavicon.png">
 
 
   <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
-    <option value="/AR-Speakers/assets/textures/blackWalnut.jpg">Black Walnut</option>
-    <option value="/AR-Speakers/assets/textures/darkCherry.jpg">Dark Cherry</option>
-    <option value="/AR-Speakers/assets/textures/walnut.jpg" selected="selected">Walnut</option>
-    <option value="/AR-Speakers/assets/textures/blank.jpg">Piano Black</option>
-    <option value="/AR-Speakers/assets/textures/UV.jpg">Non-existent Debugging Material</option>
-    <option value="/AR-Speakers/assets/textures/blank.jpg">Experimental Material</option>
+    <option value="assets/textures/founder/blackWalnut.jpg">Black Walnut</option>
+    <option value="assets/textures/founder/darkCherry.jpg">Dark Cherry</option>
+    <option value="assets/textures/founder/walnut.jpg" selected="selected">Walnut</option>
+    <option value="assets/textures/founder/pianoBlack.jpg">Piano Black</option>
+    <option value="assets/textures/UV.jpg">Non-existent Testing Material</option>
+    <option value="assets/textures/blank.jpg">Experimental Material</option>
   </select>
 
     
@@ -77,7 +77,7 @@ color: white
     let speakers = document.querySelectorAll("#speaker")
 
     speakers.forEach(function(speaker){
-      
+      /*
       //let colorString = document.getElementById("color-controls").value;
       let colorString = "1,1,1";
  
@@ -93,6 +93,11 @@ color: white
       
       let material = speaker.model.materials[0];
       material.pbrMetallicRoughness.setBaseColorFactor(color);
+      */
+
+      //Comment this variable declaration if uncommenting the above block of code
+      let material = speaker.model.materials[0];
+
       
       //Get current text value (name) of selected option
       var e = document.getElementById("color-controls");
@@ -118,6 +123,8 @@ color: white
         //     .map(numberString => parseFloat(numberString));
 
         // material.pbrMetallicRoughness.setBaseColorFactor(color);
+
+        /////////////////////////////////////////////////////////////////////////////////  BASE COLOUR NO LONGER WORKS ON iOS BECAUSE APPLE IS ANNOYING AND DEPRECATES ALL THEIR USEFUL SOFWARE WHICH PEOPLE RELY ON SUCH AS OpenGL AND COLOUR/TEXTURE OVERLAY IN AR WHICH BREAKS WEBSITES AND I AM VERY ANGRY ABOUT THIS BECUASE I HAD TO SPEND A WHOLE DAY FIXING THE PROBELMS THAT APPLE'S UPDATE CAUSED TO MY WEBSITE AND I AM GOING TO CONTINUE THIS RANT FOR A VERY LONG TIME AND IT WILL KEEP GOING BECUASE I AM VERY ANNOYED WITH BIG COMPANIES THAT DON'T CARE ABOUT THEIR CONSUMERS AND I HAVE BEEN ANGRY FOR A VERY LONG TIME SO I WILL CONTINUE TO RANT HERE.  I AM VERY ANGRY THAT APPLE DEPCRECATED OpenGL WHICH IS THE INDUSTRY STANDARD FOR CROSS PLATFORM COMPATIBILITY AND I DON'T WANT TO LEARN VULCAN BECUASE ITS TOO HARD APPLE SHOULD NOT HAVE GOTTEN RID OF OpenGL.
       }
       else if (finishName === "Walnut")
       {
@@ -128,53 +135,12 @@ color: white
       {
         material.pbrMetallicRoughness.setRoughnessFactor(0.0);
         material.pbrMetallicRoughness.setMetallicFactor(1.0);
-
-        let colorString = "0,0,0";
-
-        if (!colorString) {
-          return;
-        }
-
-        const color = colorString.split(',')
-            .map(numberString => parseFloat(numberString));
-
-        material.pbrMetallicRoughness.setBaseColorFactor(color);
-
       }
-      else if (finishName === "Non-existent Debugging Material")
+      else if (finishName === "Non-existent Testing Material")
       {
         material.pbrMetallicRoughness.setRoughnessFactor(0.5);
         material.pbrMetallicRoughness.setMetallicFactor(1.0);
-
-        // let colorString = "0.5,0.5,0.5";
-
-        // if (!colorString) {
-        //   return;
-        // }
-
-        // const color = colorString.split(',')
-        //     .map(numberString => parseFloat(numberString));
-
-        // material.pbrMetallicRoughness.setBaseColorFactor(color);
-      }
-      else if (finishName === "Experimental Material")
-      {
-        material.pbrMetallicRoughness.setRoughnessFactor(0.5);
-        material.pbrMetallicRoughness.setMetallicFactor(1.0);
-                
-        let colorString = "0.5,0.5,0.5";
-
-        if (!colorString) {
-          return;
-        }
-
-        const color = colorString.split(',')
-            .map(numberString => parseFloat(numberString));
-
-        material.pbrMetallicRoughness.setBaseColorFactor(color);
-
-      }
-      
+      }      
     });
   }
 
