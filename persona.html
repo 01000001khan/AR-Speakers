@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device=width, initial-scale=1.0">
   <title>Persona Series</title>
-  <!--<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>-->
-  
-  <script type="module"
-  src="https://unpkg.com/@google/model-viewer@1.7.2/dist/model-viewer.min.js">
-  </script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     model-viewer{
       width: 90%;
@@ -26,19 +22,13 @@ color: white
   <link rel="shortcut icon" type="image/png" href="assets\textures\personaFavicon.png">
 
   <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
-    <option value="0.03,0.06,0.10">Blue</option>
-    <option value="1,1,0.8">White</option>
-    <option value="0.09,0.09,0.09" selected="selected">Gray</option>
-
-    <option value="0.12,0.12,0.12">AR-Optimized Gray1</option>
-    <option value="0.14,0.14,0.14">AR-Optimized Gray2</option>
-    <option value="0.16,0.16,0.16">AR-Optimized Gray3</option>
-    <option value="0.18,0.18,0.18">AR-Optimized Gray4</option>
-
-    <option value="1,0.5,0">Yellow Premium Finish</option>
-    <option value="0,0.2,0.5">Blue Premium Finish</option>
-    <option value="0.6,0,0">Red Premium Finish</option>
-    <option value="1,1,1">Non-Existent Testing Material</option>
+    <option value="assets\textures\persona\AriaBlueMetallic.jpg">Aria Blue Metallic</option>
+    <option value="null">White</option>
+    <option value="/assets/textures/persona/SonicSilverMetallic.jpg" selected="selected">Gray</option>
+    <option value="/AR-Speakers/assets/textures/persona/SaffronYellowMetallic">Saffron Yellow Metallic</option>
+    <option value="/AR-Speakers/assets/textures/persona/CandyAppleRedMetallic.jpg">Candy Apple Red Metallic</option>
+    <option value="assets\textures\persona\AmethystGloss.jpg">Amethyst Gloss</option>
+    <option value="assets/textures/walnut.jpg">Non-Existent Testing Material</option>
   </select>
 
   <p>Persona B</p>
@@ -97,16 +87,15 @@ color: white
   <br>
 
   <script>
-
+  
   //called on change in colour selection list
   function updateCol(){
     
-
-
     let speakers = document.querySelectorAll("#speaker")
 
     speakers.forEach(function(speaker){
       
+      /*
       let colorString = document.getElementById("color-controls").value;
  
       if (!colorString) {
@@ -116,42 +105,28 @@ color: white
       const color = colorString.split(',')
           .map(numberString => parseFloat(numberString));
 
-      console.log('Changing color to: ', color);
+      //console.log('Changing color to: ', color);
 
       
       let material = speaker.model.materials[0];
       material.pbrMetallicRoughness.setBaseColorFactor(color);
+      */
       
       //Get current text value (name) of selected option
       var e = document.getElementById("color-controls");
       var finishName = e.options[e.selectedIndex].text;
       
-      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("assets/textures/blank.jpg");
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
 
-      //material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
-
-      // if (finishName === "Black Walnut"){
-      //   material.pbrMetallicRoughness.setRoughnessFactor(0.8);
-      //   material.pbrMetallicRoughness.setMetallicFactor(1.0);
-      // }
-      // else if (finishName === "Dark Cherry"){
-      //   material.pbrMetallicRoughness.setRoughnessFactor(0.0);
-      //   material.pbrMetallicRoughness.setMetallicFactor(0.0);
-      // }
-
-      if (true)
-      {
+      if (true){
         material.pbrMetallicRoughness.setRoughnessFactor(0.0);
         material.pbrMetallicRoughness.setMetallicFactor(0.0);
       }
-
-      if (finishName === "Non-Existent Testing Material")
-      {
-        material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI("assets/textures/walnut.jpg");
-      }
+      
       
     });
   }
+
 
   </script>
   
