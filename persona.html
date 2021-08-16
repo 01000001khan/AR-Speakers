@@ -76,48 +76,48 @@ color: white
 
   
   <script>
-  
-  //called on change in colour selection list
-  function updateCol(){
     
-    let speakers = document.querySelectorAll("#speaker")
-
-    speakers.forEach(function(speaker){
+    //called on change in colour selection list
+    function updateCol(){
       
-      /*
-      let colorString = document.getElementById("color-controls").value;
- 
-      if (!colorString) {
-        return;
-      }
+      let speakers = document.querySelectorAll("#speaker")
 
-      const color = colorString.split(',')
-          .map(numberString => parseFloat(numberString));
+      speakers.forEach(function(speaker){
+        
+        /*
+        let colorString = document.getElementById("color-controls").value;
+  
+        if (!colorString) {
+          return;
+        }
 
-      //console.log('Changing color to: ', color);
+        const color = colorString.split(',')
+            .map(numberString => parseFloat(numberString));
 
-      //let material = speaker.model.materials[0];
+        //console.log('Changing color to: ', color);
 
-      material.pbrMetallicRoughness.setBaseColorFactor(color);
-      */
+        //let material = speaker.model.materials[0];
 
-      //Comment this variable declaration if uncommenting the above block of code
-      let material = speaker.model.materials[0];
-      
-      //Get current text value (name) of selected option
-      var e = document.getElementById("color-controls");
-      var finishName = e.options[e.selectedIndex].text;
-      
-      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+        material.pbrMetallicRoughness.setBaseColorFactor(color);
+        */
 
-      if (true){
-        material.pbrMetallicRoughness.setRoughnessFactor(0.0);
-        material.pbrMetallicRoughness.setMetallicFactor(0.0);
-      }
-      
-      
-    });
-  }
+        //Comment this variable declaration if uncommenting the above block of code
+        let material = speaker.model.materials[0];
+        
+        //Get current text value (name) of selected option
+        var e = document.getElementById("color-controls");
+        var finishName = e.options[e.selectedIndex].text;
+        
+        material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+
+        if (true){
+          material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+          material.pbrMetallicRoughness.setMetallicFactor(0.0);
+        }
+        
+        
+      });
+    }
 
 
   </script>
