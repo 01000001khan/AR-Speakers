@@ -80,7 +80,12 @@ color: white
           material.pbrMetallicRoughness.setRoughnessFactor(0.0);
           material.pbrMetallicRoughness.setMetallicFactor(0.0);
         }
-        else if (finishName === "Matte Black")
+        else if (finishName === "Gloss Black")
+        {
+          material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+          material.pbrMetallicRoughness.setMetallicFactor(0.0);
+        }
+        else if (finishName === "Espresso Grain")
         {
           material.pbrMetallicRoughness.setRoughnessFactor(0.8);
           material.pbrMetallicRoughness.setMetallicFactor(0.0);
