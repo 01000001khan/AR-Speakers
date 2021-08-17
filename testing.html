@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device=width, initial-scale=1.0">
+  <title>Persona Series</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    model-viewer{
+      width: 90%;
+      height: 512px;
+      margin: 0 auto;
+      padding: 10;
+    }
+  </style>
+</head>
+<body 
+style="
+background-color:rgb(0, 20, 50); 
+color: white
+">
+  <link rel="shortcut icon" type="image/png" href="assets/textures/personaFavicon.png">
+
+  <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
+    <option value="assets/textures/persona/AriaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
+    <option value="assets/textures/persona/HarmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
+    <option value="assets/textures/persona/SonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
+    <option value="assets/textures/persona/SaffronYellowMetallic.jpg">                      Saffron Yellow Metallic </option>
+    <option value="assets/textures/persona/CandyAppleRedMetallic.jpg">                      Candy Apple Red Metallic </option>
+    <option value="assets/textures/persona/AmethystGloss.jpg">                              Amethyst Gloss          </option>
+    <option value="assets/textures/walnut.jpg">                                             Non-Existent Testing Material</option>
+  </select>
+
+  <P>Regular Version</P>
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/personaSub.glb" onload="updateCol();">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <P>Sparkly</P>
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/personaSubSparkle.glb" onload="updateCol();">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+
+
+  <br>
+  <br>
+  <br>
+  <p>Persona Finishes Testing</p>
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTesting.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTest2.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishMatrix.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishSpheres.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishExperiment.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+
+
+  <br>
+
+  <script>
+  
+  //called on change in colour selection list
+  function updateCol(){
+    
+    let speakers = document.querySelectorAll("#speaker")
+
+    speakers.forEach(function(speaker){
+      
+      /*
+      let colorString = document.getElementById("color-controls").value;
+ 
+      if (!colorString) {
+        return;
+      }
+
+      const color = colorString.split(',')
+          .map(numberString => parseFloat(numberString));
+
+      //console.log('Changing color to: ', color);
+
+      //let material = speaker.model.materials[0];
+
+      material.pbrMetallicRoughness.setBaseColorFactor(color);
+      */
+
+      //Comment this variable declaration if uncommenting the above block of code
+      let material = speaker.model.materials[0];
+      
+      //Get current text value (name) of selected option
+      var e = document.getElementById("color-controls");
+      var finishName = e.options[e.selectedIndex].text;
+      
+      material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+
+      if (true){
+        material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+        material.pbrMetallicRoughness.setMetallicFactor(0.0);
+      }
+      
+      
+    });
+  }
+
+
+  </script>
+  
+</body>
+</html>
