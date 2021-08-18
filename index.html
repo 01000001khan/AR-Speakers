@@ -53,10 +53,28 @@ color: white
   <br><br><br>
   
   <p>Exploded Woofer AR</p>
-  <model-viewer id="woofer" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls auto-rotate src="assets/models/general/woofer.glb">
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls auto-rotate src="assets/models/general/woofer.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
+
+
+
+  <p>Animation Position Testing</p>
+  <model-viewer id="woofer" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls auto-rotate src="assets/models/general/woofer.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+
+    <input id="animationPosition" type="range" min="0" max="1" step="0.01" value="1" >
+
+  </model-viewer>
+  <br>
+
+  <script>
+    woofer = document.querySelector("#woofer");
+    sliderInput = document.querySelector("#animationPosition");
+
+    woofer.currentTime = sliderInput.value;
+  </script>
 
 
 
