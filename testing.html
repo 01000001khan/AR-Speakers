@@ -19,15 +19,14 @@ style="
 background-color:rgb(0, 20, 50); 
 color: white
 ">
-  <link rel="shortcut icon" type="image/png" href="assets/textures/personaFavicon.png">
 
   <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
-    <option value="assets/textures/persona/AriaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
-    <option value="assets/textures/persona/HarmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
-    <option value="assets/textures/persona/SonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
-    <option value="assets/textures/persona/SaffronYellowMetallic.jpg">                      Saffron Yellow Metallic </option>
-    <option value="assets/textures/persona/CandyAppleRedMetallic.jpg">                      Candy Apple Red Metallic </option>
-    <option value="assets/textures/persona/AmethystGloss.jpg">                              Amethyst Gloss          </option>
+    <option value="assets/textures/persona/ariaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
+    <option value="assets/textures/persona/harmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
+    <option value="assets/textures/persona/sonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
+    <option value="assets/textures/persona/saffronYellowMetallic.jpg">                      Saffron Yellow Metallic </option>
+    <option value="assets/textures/persona/candyAppleRedMetallic.jpg">                      Candy Apple Red Metallic </option>
+    <option value="assets/textures/persona/amethystGloss.jpg">                              Amethyst Gloss          </option>
     <option value="assets/textures/walnut.jpg">                                             Non-Existent Testing Material</option>
   </select>
 
@@ -44,12 +43,36 @@ color: white
   <br>
 
 
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/general/tv.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate ar-placement="wall" environment-image="neutral" src="assets/models/general/decorC1.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate ar-placement="wall" environment-image="neutral" src="assets/models/general/eliteE3.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+
+
 
   <br>
   <br>
   <br>
   <p>Persona Finishes Testing</p>
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTesting.glb">
+  
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishSpheresMatrix.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+
+  <!--<model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTesting.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
@@ -63,7 +86,7 @@ color: white
   <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishMatrix.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
-  <br>
+  <br>-->
 
   <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishSpheres.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
@@ -71,6 +94,15 @@ color: white
   <br>
 
   <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishExperiment.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <p>Defiance XR13</p>
+  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/general/defiancexr13.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
