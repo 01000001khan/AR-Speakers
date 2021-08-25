@@ -101,11 +101,16 @@ color: white
   <br>
   <br>
   <br>
-  <p>Defiance XR13</p>
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/general/defiancexr13.glb">
+
+  <a onclick="hide();"> ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀  ⠀ </a>
+  
+  <model-viewer id="defiance" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate environment-image="neutral" src="assets/models/general/defiancexr13.glb">
+    <p>Defiance XR13</p>
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
+
+
 
 
 
@@ -113,6 +118,15 @@ color: white
 
   <script>
   
+  function hide() {
+    var x = document.getElementById("defiance");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
   //called on change in colour selection list
   function updateCol(){
     
