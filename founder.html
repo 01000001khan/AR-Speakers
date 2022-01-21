@@ -111,16 +111,14 @@ color: white
         */
 
         //Comment this variable declaration if uncommenting the above block of code
-        let material = speaker.model.materials[0];
+        const material = speaker.model.materials[0];
 
         
         //Get current text value (name) of selected option
         var e = document.getElementById("color-controls");
         var finishName = e.options[e.selectedIndex].text;
         
-        //material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
-        const texture = await modelViewerTexture.createTexture(e.target.value);
-        material.pbrMetallicRoughness['baseColorTexture'].setTexture(texture)
+        material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
 
         if (finishName === "Black Walnut"){
           material.pbrMetallicRoughness.setRoughnessFactor(0.8);
