@@ -118,7 +118,9 @@ color: white
         var e = document.getElementById("color-controls");
         var finishName = e.options[e.selectedIndex].text;
         
-        material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+        //material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
+        const texture = await modelViewerTexture.createTexture(e.target.value);
+        material.pbrMetallicRoughness['baseColorTexture'].setTexture(texture)
 
         if (finishName === "Black Walnut"){
           material.pbrMetallicRoughness.setRoughnessFactor(0.8);
