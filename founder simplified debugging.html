@@ -30,32 +30,88 @@
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
+
+  <p>Founder 120H</p>
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="https://01000001khan.github.io/AR-Speakers/assets/models/founder/founder120h.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <p>Founder 40B</p>
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="https://01000001khan.github.io/AR-Speakers/assets/models/founder/founder40b.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <p>Founder 40B</p>
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="https://01000001khan.github.io/AR-Speakers/assets/models/founder/founder40b.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
+  <p>Founder 40B</p>
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="https://01000001khan.github.io/AR-Speakers/assets/models/founder/founder40b.glb">
+    <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
+  </model-viewer>
+  <br>
+
     
 
 
   <script>
 
-  const speaker = document.querySelector("#speaker");
-
+  const speakers = document.querySelectorAll("#speaker");
+  const speaker = document.querySelector("#speaker");      
+      
   speaker.addEventListener("load", () => {
-
-    const material = speaker.model.materials[0];
 
     const createAndApplyTexture = async (channel, event) => {
       const texture = await speaker.createTexture(event.target.value);
-      if (channel.includes('base') || channel.includes('metallic')) {
-        material.pbrMetallicRoughness[channel].setTexture(texture);
-      } else {
-        material[channel].setTexture(texture);
+      
+      speakers.forEach(function(speaker){
+        const material = speaker.model.materials[0];
+        if (channel.includes('base') || channel.includes('metallic')) {
+          material.pbrMetallicRoughness[channel].setTexture(texture);
+        } else {
+          material[channel].setTexture(texture);
+        }
+      });
+
+
+
+      var finishName = event.target.options[event.target.selectedIndex].text;
+      if (finishName === "Black Walnut"){
+        material.pbrMetallicRoughness.setRoughnessFactor(0.8);
+        material.pbrMetallicRoughness.setMetallicFactor(1.0);
       }
+      else if (finishName === "Dark Cherry"){
+        material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+        material.pbrMetallicRoughness.setMetallicFactor(0.0);
+      }
+      else if (finishName === "Walnut")
+      {
+        material.pbrMetallicRoughness.setRoughnessFactor(0.8);
+        material.pbrMetallicRoughness.setMetallicFactor(0.1);
+      }
+      else if (finishName === "Piano Black")
+      {
+        material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+        material.pbrMetallicRoughness.setMetallicFactor(1.0);
+      }
+      else if (finishName === "Non-existent Testing Material")
+      {
+        material.pbrMetallicRoughness.setRoughnessFactor(0.5);
+        material.pbrMetallicRoughness.setMetallicFactor(1.0);
+      }      
+
     }
 
+      
     document.querySelector('#color-controls').addEventListener('input', (event) => {
       createAndApplyTexture('baseColorTexture', event);
     });
-
-  });
-
+      
+  });//all working, just need to adjust code so that newly loading in elements will be the selected colour.
 
   // if (finishName === "Black Walnut"){
   //   material.pbrMetallicRoughness.setRoughnessFactor(0.8);
