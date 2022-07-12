@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device=width, initial-scale=1.0">
   <title>Persona Series</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer@1.9.2/dist/model-viewer.min.js"></script><!---->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script><!---->
+  
   <style>
     model-viewer{
       width: 90%;
@@ -14,16 +15,13 @@
     }
   </style>
 </head>
-<body 
-style="
-background-color:rgb(0, 20, 50); 
-color: white
-">
+<body style="background-color:rgb(70, 86, 110); color: white;">
+  
   <form action="https://01000001khan.github.io/AR-Speakers/index.html">
     <input type="submit" value="Home Page" />
   </form>
 
-  <select class="controls" ,="" id="color-controls" onchange="updateCol();" >
+  <select class="controls" ,="" id="color-controls">
     <option value="assets/textures/persona/ariaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
     <option value="assets/textures/persona/harmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
     <option value="assets/textures/persona/sonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
@@ -34,43 +32,43 @@ color: white
   </select>
 
   <p>Persona B</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/personab.glb" onload="updateCol();" loading="eager">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personab.glb" loading="eager">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
 
   <p>Persona C</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/personac.glb" onload="updateCol();">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personac.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
 
   <p>Persona Sub</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/personaSub.glb" onload="updateCol();">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personaSub.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
   
   <p>Persona 3F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/persona3f.glb" onload="updateCol();">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona3f.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
 
   <p>Persona 5F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/persona5f.glb" onload="updateCol();">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona5f.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
 
   <p>Persona 7F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/persona7f.glb" onload="updateCol();">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona7f.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
   
   <p>Persona 9H</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate src="assets/models/persona/persona9h.glb" onload="updateCol();">
+  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona9h.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
   <br>
@@ -78,51 +76,42 @@ color: white
 
   
   <script>
-    
-    //called on change in colour selection list
-    function updateCol(){
-      
-      let speakers = document.querySelectorAll("#speaker")
 
-      speakers.forEach(function(speaker){
-        
-        /*
-        let colorString = document.getElementById("color-controls").value;
+    const speakers = document.querySelectorAll("#speaker");
+    const speaker = document.querySelector("#speaker");      
+    const colorSelector = document.querySelector('#color-controls');    
   
-        if (!colorString) {
-          return;
-        }
-
-        const color = colorString.split(',')
-            .map(numberString => parseFloat(numberString));
-
-        //console.log('Changing color to: ', color);
-
-        //let material = speaker.model.materials[0];
-
-        material.pbrMetallicRoughness.setBaseColorFactor(color);
-        */
-
-        //Comment this variable declaration if uncommenting the above block of code
-        let material = speaker.model.materials[0];
+    speaker.addEventListener("load", () => {
+  
+      const createAndApplyTexture = async (channel, event) => {
+        const texture = await speaker.createTexture(colorSelector.value);
         
-        //Get current text value (name) of selected option
-        var e = document.getElementById("color-controls");
-        var finishName = e.options[e.selectedIndex].text;
-        
-        material.pbrMetallicRoughness['baseColorTexture'].texture.source.setURI(e.value);
-
-        if (true){
+        speakers.forEach(function(speaker){
+          const material = speaker.model.materials[0];
+          material.pbrMetallicRoughness[channel].setTexture(texture);
+          
+          
           material.pbrMetallicRoughness.setRoughnessFactor(0.0);
           material.pbrMetallicRoughness.setMetallicFactor(0.0);
-        }
-        
-        
-      });
-    }
-
-
-  </script>
+        });
   
+      }
+  
+        
+      document.querySelector('#color-controls').addEventListener('input', (event) => {
+        createAndApplyTexture('baseColorTexture', event);
+      });
+  
+      speakers.forEach(function(speaker){
+        speaker.addEventListener('load', (event) => {
+          createAndApplyTexture('baseColorTexture', event);
+        });
+      });
+  
+      
+    });
+  
+    </script>
+    
 </body>
 </html>
