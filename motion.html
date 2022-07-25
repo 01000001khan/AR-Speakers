@@ -21,6 +21,14 @@
     <input type="submit" value="Martin Logan Page" />
   </form>
 
+  <select class="controls" ,="" id="color-controls">
+    <option value="assets/textures/blank.jpg">Gloss White</option>
+    <option value="assets/textures/founder/darkCherry.jpg" selected="selected">Dark Cherry</option>
+    <option value="assets/textures/founder/pianoBlack.jpg">Piano Black</option>
+    <option value="assets/textures/UV.jpg">Non-existent Testing Material</option>
+  </select>
+
+
   <p>Motion 15i</p>
   <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/martinlogan/motion/Motion15i.glb" loading="eager">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
@@ -28,6 +36,61 @@
   <br>
 
 
+  <script>
+
+    const speakers = document.querySelectorAll("#speaker");
+    const speaker = document.querySelector("#speaker");      
+    const colorSelector = document.querySelector('#color-controls');    
+  
+    speaker.addEventListener("load", () => {
+  
+      const createAndApplyTexture = async (channel, event) => {
+        const texture = await speaker.createTexture(colorSelector.value);
+        
+        speakers.forEach(function(speaker){
+          const material = speaker.model.materials[0];
+          material.pbrMetallicRoughness[channel].setTexture(texture);
+          
+          
+          var finishName = colorSelector.options[colorSelector.selectedIndex].text;
+          if (finishName === "Gloss White"){
+            material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+            material.pbrMetallicRoughness.setMetallicFactor(0.0);
+          }
+          else if (finishName === "Dark Cherry"){
+            material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+            material.pbrMetallicRoughness.setMetallicFactor(0.0);
+          }
+          else if (finishName === "Piano Black")
+          {
+            material.pbrMetallicRoughness.setRoughnessFactor(0.0);
+            material.pbrMetallicRoughness.setMetallicFactor(1.0);
+          }
+          else if (finishName === "Non-existent Testing Material")
+          {
+            material.pbrMetallicRoughness.setRoughnessFactor(0.5);
+            material.pbrMetallicRoughness.setMetallicFactor(1.0);
+          }      
+        });
+  
+      }
+  
+        
+      document.querySelector('#color-controls').addEventListener('input', (event) => {
+        createAndApplyTexture('baseColorTexture', event);
+      });
+  
+      speakers.forEach(function(speaker){
+        speaker.addEventListener('load', (event) => {
+          createAndApplyTexture('baseColorTexture', event);
+        });
+      });
+  
+      
+    });
+  
+    </script>
+    
 
 </body>
 </html>
