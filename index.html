@@ -74,7 +74,7 @@
 
 
 
-  <br><br><br><br><br>
+  <br><br>
   <a href="https://01000001khan.github.io/AR-Speakers/testing.html">
     <h2 class="link">Testing Page</h2>
   </a>
@@ -85,10 +85,10 @@
 
 
   <br><br><br><br><br>
-  <p>Other things:</p>
+  <h3>Other things:</h3>
   <br><br><br>
   
-  <p>Exploded Woofer AR</p>
+  <h4>Exploded Woofer AR</h4>
   <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/woofer.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
   </model-viewer>
@@ -96,7 +96,7 @@
 
 
 
-  <p>Animation Position Testing</p>
+  <h4>Animation Position Testing</h4>
   <model-viewer id="woofer" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/woofer.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
 
@@ -104,17 +104,15 @@
 
   </model-viewer>
 
-
   <model-viewer id="decor" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/decor test.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
-
-    <input id="decorPos" type="range" min="0" max="4.16" step="0.01" value="0" oninput="animationUpdate();">
-
+    <input id="decorPos" type="range" min="0" max="0.999" step="0.001" value="0" oninput="animationUpdate();">
   </model-viewer>
   <br>
 
-  <script>
 
+
+  <script>
     function animationUpdate(){
         
       woofer = document.querySelector("#woofer");
