@@ -97,34 +97,33 @@
 
 
   <h4>Animation Position Testing</h4>
+  <input id="animationPosition" type="range" min="0" max="5" step="0.01" value="5" oninput="animationUpdate(this);">
   <model-viewer id="woofer" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/woofer.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
-
-    <input id="animationPosition" type="range" min="0" max="5" step="0.01" value="5" oninput="animationUpdate();">
-
   </model-viewer>
-
+  
+  <input id="decorPos" type="range" min="0" max="0.999" step="0.001" value="0" oninput="animationUpdate(this);">
   <model-viewer id="decor" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/decor test.glb">
     <button slot="ar-button" style="background-color: white; border-radius: 4px; border: none; position: absolute; bottom: 16px; right: 16px; ">View in AR</button>
-    <input id="decorPos" type="range" min="0" max="0.999" step="0.001" value="0" oninput="animationUpdate();">
   </model-viewer>
   <br>
 
 
 
   <script>
-    function animationUpdate(){
-        
-      woofer = document.querySelector("#woofer");
-      decor = document.querySelector("#decor");
-      sliderInput = document.querySelector("#animationPosition");
-      decorIn = document.querySelector("#decorPos");
+    function animationUpdate(elem){
+      // woofer = document.querySelector("#woofer");
+      // decor = document.querySelector("#decor");
+      // sliderInput = document.querySelector("#animationPosition");
+      // decorIn = document.querySelector("#decorPos");
 
-      woofer.pause();
-      woofer.currentTime = sliderInput.value;
-      decor.pause();
-      decor.currentTime = decorIn.value;
+      // woofer.pause();
+      // woofer.currentTime = sliderInput.value;
+      // decor.pause();
+      // decor.currentTime = decorIn.value;
 
+      elem.parentElement.pause();
+      elem.parentElement.currentTime = elem.value;
     }
   </script>
 </body>
