@@ -1,0 +1,23 @@
+model-viewer{
+    width: 90%;
+    height: 512px;
+    margin: 0 auto;
+    padding: 10;
+}
+
+
+.link{
+    color:white;
+    font-family: Sans-Serif;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.link-image{
+    height: 50vh;
+    transition: transform 200ms;
+}
+a:hover{
+    transform: scale(1.05);
+    transition: transform 200ms;
+}
