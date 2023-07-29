@@ -7,132 +7,85 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script><!---->
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <link rel="stylesheet" href="universal.css"></head>
-<body style="background-color:rgb(70, 86, 110); color: white;">
+  <link rel="stylesheet" href="universal.css">
+</head>
+<body>
+  <div class="container">
+    <form action="https://01000001khan.github.io/AR-Speakers/index.html">
+      <input type="submit" value="Home Page" />
+    </form>
+        
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1.glb" ios-src="assets/models/decor/decorC1.usdz">
+      <input type="range" min="0" max="1" step="0.01" value="0" oninput="animationUpdate(this);">
+    </model-viewer>
 
-  <form action="https://01000001khan.github.io/AR-Speakers/index.html">
-    <input type="submit" value="Home Page" />
-  </form>
-  
-  <br><br>
-  
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1.glb" ios-src="assets/models/decor/decorC1.usdz">
-    <input type="range" min="0" max="1" step="0.01" value="0" oninput="animationUpdate(this);">
-  </model-viewer>
-  <br>
-  
-  
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/martinLoganESLtest.glb">
-  </model-viewer>
-  <br>
-  
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="assets/textures/leadenhall.hdr" src="assets/models/general/wall small.glb">
-  </model-viewer>
-  <br>
-  
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="assets/textures/leadenhall.hdr" src="assets/models/general/wall.glb">
-  </model-viewer>
-  <br>
-  
-  <br>
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/car.glb">
-  </model-viewer>
-  <br>
-  
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/eliteE3.glb">
-  </model-viewer>
-  <br>
-  
-  <select class="controls" ,="" id="color-controls">
-    <option value="assets/textures/persona/ariaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
-    <option value="assets/textures/persona/harmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
-    <option value="assets/textures/persona/sonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
-    <option value="assets/textures/persona/saffronYellowMetallic.jpg">                      Saffron Yellow Metallic </option>
-    <option value="assets/textures/persona/candyAppleRedMetallic.jpg">                      Candy Apple Red Metallic </option>
-    <option value="assets/textures/persona/amethystGloss.jpg">                              Amethyst Gloss          </option>
-    <option value="assets/textures/walnut.jpg">                                             Non-Existent Testing Material</option>
-  </select>
-  <br><br>
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/martinLoganESLtest.glb">
+    </model-viewer>
+
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="assets/textures/leadenhall.hdr" src="assets/models/general/wall small.glb">
+    </model-viewer>
     
-  <P>Regular Version</P>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personaSub.glb">
-  </model-viewer>
-  <br>
-
-  <P>Sparkly</P>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personaSubSparkle.glb">
-  </model-viewer>
-  <br>
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/DamagedHelmet/glTF/DamagedHelmet.gltf" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
-  </model-viewer>
-  <br>
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
-  </model-viewer>
-  <br>
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/ToyCar/glTF-Binary/ToyCar.glb" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
-  </model-viewer>
-  <br>
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/AlphaBlendModeTest.glb" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
-  </model-viewer>
-  <br>
-
-
-
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/tv.glb">
-  </model-viewer>
-  <br>
-
-
-
-
-  <br>
-  <br>
-  <br>
-  <p>Persona Finishes Testing</p>
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="assets/textures/leadenhall.hdr" src="assets/models/general/wall.glb">
+    </model-viewer>
+    
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/car.glb">
+    </model-viewer>
+    
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/eliteE3.glb">
+    </model-viewer>
+    
+    <select class="controls" ,="" id="color-controls">
+      <option value="assets/textures/persona/ariaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
+      <option value="assets/textures/persona/harmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
+      <option value="assets/textures/persona/sonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
+      <option value="assets/textures/persona/saffronYellowMetallic.jpg">                      Saffron Yellow Metallic </option>
+      <option value="assets/textures/persona/candyAppleRedMetallic.jpg">                      Candy Apple Red Metallic </option>
+      <option value="assets/textures/persona/amethystGloss.jpg">                              Amethyst Gloss          </option>
+      <option value="assets/textures/walnut.jpg">                                             Non-Existent Testing Material</option>
+    </select>
+      
+    <P>Regular Version</P>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personaSub.glb">
+    </model-viewer>
   
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishSpheresMatrix.glb">
-  </model-viewer>
-  <br>
-
-
-  <!--<model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTesting.glb">
-  </model-viewer>
-  <br>
-
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishesTest2.glb">
-  </model-viewer>
-  <br>
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishMatrix.glb">
-  </model-viewer>
-  <br>-->
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishSpheres.glb">
-  </model-viewer>
-  <br>
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishExperiment.glb">
-  </model-viewer>
-  <br>
-
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/eslGrilleMesh.glb">
-  </model-viewer>
-  <br>
+    <P>Sparkly</P>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personaSubSparkle.glb">
+    </model-viewer>
   
-  <model-viewer id="defiance" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/defiancexr13.glb" onload="hide();">
-    <p>Defiance XR13</p>
-  </model-viewer>
-  <br>
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/DamagedHelmet/glTF/DamagedHelmet.gltf" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
+    </model-viewer>
 
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
+    </model-viewer>
 
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/ToyCar/glTF-Binary/ToyCar.glb" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
+    </model-viewer>
+  
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/AlphaBlendModeTest.glb" environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.hdr">
+    </model-viewer>
+  
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/tv.glb">
+    </model-viewer>
+  
+    <p>Persona Finishes Testing</p>
+    
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishSpheresMatrix.glb">
+    </model-viewer>  
+  
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishSpheres.glb">
+    </model-viewer>
+  
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/persona/personaFinishExperiment.glb">
+    </model-viewer>
+  
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/eslGrilleMesh.glb">
+    </model-viewer>
+    
+    <model-viewer id="defiance" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/defiancexr13.glb" onload="hide();">
+      <p>Defiance XR13</p>
+    </model-viewer>
 
-
-
-  <br>
+  </div>
 
   <script>
   const speakers = document.querySelectorAll("#speaker");

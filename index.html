@@ -6,14 +6,14 @@
   <title>AR Paradigm Speakers</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script><!---->
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <link rel="stylesheet" href="universal.css"></head>
-  
-<body>
   <link rel="icon" type="image/x-icon" href="https://01000001khan.github.io/AR-Speakers/assets/textures/indexFavicon.ico?">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="universal.css">
+</head>
+
+<body>
 
   <div class="container">
-    
     <div class="linkContainer">
       <a class="link" href="https://01000001khan.github.io/AR-Speakers/founder.html">
         <img class="link-image" src="https://01000001khan.github.io/AR-Speakers/assets/textures/buttonIcons/founder.webp" />
@@ -66,7 +66,6 @@
     <h4>Exploded Woofer AR</h4>
     <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/woofer.glb">
     </model-viewer>
-    <br>
   
   
   
@@ -78,8 +77,7 @@
     <model-viewer id="decor" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/decor test.glb">
       <input id="decorPos" type="range" min="0" max="0.999" step="0.001" value="0" oninput="animationUpdate(this);">
     </model-viewer>
-    <br>
-
+    
   </div>
 
 

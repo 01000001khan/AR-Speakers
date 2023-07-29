@@ -6,34 +6,33 @@
   <title>Defiance X Series</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script><!---->
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <link rel="stylesheet" href="universal.css"></head>
-<body style="background-color:rgb(70, 86, 110); color: white;">
   <link rel="icon" type="image/x-icon" href="https://01000001khan.github.io/AR-Speakers/assets/textures/defianceFavicon.ico?">
-
-  <form action="https://01000001khan.github.io/AR-Speakers/index.html">
-    <input type="submit" value="Home Page" />
-  </form>
-
-  <p>Defiance X10 Subwoofer</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/defiancex/defiancex10.glb" loading="eager">
-  </model-viewer>
-  <br>
-
-  <p>Defiance X12 Subwoofer</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/defiancex/defiancex12.glb">
-  </model-viewer>
-  <br>
-
-  <p>Defiance X15 Subwoofer</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/defiancex/defiancex15.glb">
-  </model-viewer>
-  <br>
-
-  <p>Defiance XR13</p>
-  <model-viewer id="defiance" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/defiancexr13.glb" onload="hide();">
-  </model-viewer>
-  <br>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="universal.css">
+</head>
+<body>
+  <div class="container">
+    <form action="https://01000001khan.github.io/AR-Speakers/index.html">
+      <input type="submit" value="Home Page" />
+    </form>
+  
+    <p>Defiance X10 Subwoofer</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/defiancex/defiancex10.glb" loading="eager">
+    </model-viewer>
+  
+    <p>Defiance X12 Subwoofer</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/defiancex/defiancex12.glb">
+    </model-viewer>
+  
+    <p>Defiance X15 Subwoofer</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/defiancex/defiancex15.glb">
+    </model-viewer>
+  
+    <p>Defiance XR13</p>
+    <model-viewer id="defiance" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/defiancexr13.glb" onload="hide();">
+    </model-viewer>
+    
+  </div>
 
 </body>
 </html>

@@ -8,22 +8,18 @@
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
   <link rel="stylesheet" href="universal.css"></head>
-<body style="background-image: linear-gradient(90deg, rgb(64,0,255), rgb(0,128,255)); color: white">
-  <form action="https://01000001khan.github.io/AR-Speakers/index.html">
-    <input type="submit" value="Home" />
-  </form>
-  <br>
-<br><br>
-  <form action="https://01000001khan.github.io/AR-Speakers/motion.html">
-    <input type="submit" value="Motion Series" />
-  </form>
-  <br>
-
-  <p>Exploded Woofer AR</p>
-  <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/woofer.glb">
-  </model-viewer>
-  <br>
-
-
+<body>
+  <div class="container">
+    <form action="https://01000001khan.github.io/AR-Speakers/index.html">
+      <input type="submit" value="Home" />
+    </form>
+    <form action="https://01000001khan.github.io/AR-Speakers/motion.html">
+      <input type="submit" value="Motion Series" />
+    </form>
+  
+    <p>Exploded Woofer AR</p>
+    <model-viewer id="test" ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/woofer.glb">
+    </model-viewer>    
+  </div>
 </body>
 </html>

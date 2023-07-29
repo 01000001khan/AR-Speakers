@@ -6,59 +6,55 @@
   <title>Persona Series</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script><!---->
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <link rel="stylesheet" href="universal.css"></head>
-<body style="background-color:rgb(70, 86, 110); color: white;">
   <link rel="icon" type="image/x-icon" href="https://01000001khan.github.io/AR-Speakers/assets/textures/personaFavicon.ico?">
-
-  <form action="https://01000001khan.github.io/AR-Speakers/index.html">
-    <input type="submit" value="Home Page" />
-  </form>
-
-  <select class="controls" ,="" id="color-controls">
-    <option value="assets/textures/persona/ariaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
-    <option value="assets/textures/persona/harmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
-    <option value="assets/textures/persona/sonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
-    <option value="assets/textures/persona/saffronYellowMetallic.jpg">                      Saffron Yellow Metallic </option>
-    <option value="assets/textures/persona/candyAppleRedMetallic.jpg">                      Candy Apple Red Metallic </option>
-    <option value="assets/textures/persona/amethystGloss.jpg">                              Amethyst Gloss          </option>
-    <option value="assets/textures/walnut.jpg">                                             Non-Existent Testing Material</option>
-  </select>
-
-  <p>Persona B</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personab.glb" loading="eager">
-  </model-viewer>
-  <br>
-
-  <p>Persona C</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personac.glb">
-  </model-viewer>
-  <br>
-
-  <p>Persona Sub</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personaSub.glb">
-  </model-viewer>
-  <br>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="universal.css">
+</head>
+<body>
+  <div class="container">
+    <form action="https://01000001khan.github.io/AR-Speakers/index.html">
+      <input type="submit" value="Home Page" />
+    </form>
   
-  <p>Persona 3F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona3f.glb">
-  </model-viewer>
-  <br>
-
-  <p>Persona 5F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona5f.glb">
-  </model-viewer>
-  <br>
-
-  <p>Persona 7F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona7f.glb">
-  </model-viewer>
-  <br>
+    <select class="controls" ,="" id="color-controls">
+      <option value="assets/textures/persona/ariaBlueMetallic.jpg">                           Aria Blue Metallic      </option>
+      <option value="assets/textures/persona/harmonyWhiteGloss.jpg">                          Harmony White Gloss    </option>
+      <option value="assets/textures/persona/sonicSilverMetallic.jpg" selected="selected">    Sonic Silver Metallic   </option>
+      <option value="assets/textures/persona/saffronYellowMetallic.jpg">                      Saffron Yellow Metallic </option>
+      <option value="assets/textures/persona/candyAppleRedMetallic.jpg">                      Candy Apple Red Metallic </option>
+      <option value="assets/textures/persona/amethystGloss.jpg">                              Amethyst Gloss          </option>
+      <option value="assets/textures/walnut.jpg">                                             Non-Existent Testing Material</option>
+    </select>
   
-  <p>Persona 9H</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona9h.glb">
-  </model-viewer>
-  <br>
+    <p>Persona B</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personab.glb" loading="eager">
+    </model-viewer>
+  
+    <p>Persona C</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personac.glb">
+    </model-viewer>
+  
+    <p>Persona Sub</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/personaSub.glb">
+    </model-viewer>
+    
+    <p>Persona 3F</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona3f.glb">
+    </model-viewer>
+  
+    <p>Persona 5F</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona5f.glb">
+    </model-viewer>
+  
+    <p>Persona 7F</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona7f.glb">
+    </model-viewer>
+    
+    <p>Persona 9H</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/persona/persona9h.glb">
+    </model-viewer>
+    
+  </div>
 
 
   

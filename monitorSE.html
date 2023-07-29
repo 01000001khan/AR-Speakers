@@ -7,43 +7,40 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script><!---->
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-  <link rel="stylesheet" href="universal.css"></head>
-<body style="background-color:rgb(70, 86, 110); color: white;">
+  <link rel="stylesheet" href="universal.css">
+</head>
+<body>
+  <div class="container">
+    <form action="https://01000001khan.github.io/AR-Speakers/index.html">
+      <input type="submit" value="Home Page" />
+    </form>
 
-  <form action="https://01000001khan.github.io/AR-Speakers/index.html">
-    <input type="submit" value="Home Page" />
-  </form>
+    <select class="controls" ,="" id="color-controls">
+      <option value="assets/textures/monitorSE/glossWhite.jpg">                   Gloss White    </option>
+      <option value="assets/textures/monitorSE/matteBlack.jpg">                   Matte Black    </option>
+    </select>
 
-  <select class="controls" ,="" id="color-controls">
-    <option value="assets/textures/monitorSE/glossWhite.jpg">                   Gloss White    </option>
-    <option value="assets/textures/monitorSE/matteBlack.jpg">                   Matte Black    </option>
-  </select>
+    <p>Monitor SE Atom</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSEAtom.glb" loading="eager">
+    </model-viewer>
 
-  <p>Monitor SE Atom</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSEAtom.glb" loading="eager">
-  </model-viewer>
-  <br>
+    <p>Monitor SE 2000C</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE2000c.glb">
+    </model-viewer>
 
-  <p>Monitor SE 2000C</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE2000c.glb">
-  </model-viewer>
-  <br>
+    <p>Monitor SE 3000F</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE3000f.glb">
+    </model-viewer>
 
-  <p>Monitor SE 3000F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE3000f.glb">
-  </model-viewer>
-  <br>
+    <p>Monitor SE 6000f</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE6000f.glb">
+    </model-viewer>
 
-  <p>Monitor SE 6000f</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE6000f.glb">
-  </model-viewer>
-  <br>
+    <p>Monitor SE 8000F</p>
+    <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE8000f.glb">
+    </model-viewer>
 
-  <p>Monitor SE 8000F</p>
-  <model-viewer id="speaker" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/monitorSE/monitorSE8000f.glb">
-  </model-viewer>
-  <br>
-
+  </div>
 
   
   <script>
