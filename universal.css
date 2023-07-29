@@ -16,8 +16,15 @@ model-viewer{
 .link-image{
     height: 50vh;
     transition: transform 200ms;
+    margin: 1rem;
 }
 a:hover{
     transform: scale(1.05);
     transition: transform 200ms;
+}
+
+.linkContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
