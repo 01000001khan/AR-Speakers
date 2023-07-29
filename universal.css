@@ -1,10 +1,8 @@
 model-viewer{
-    width: 90%;
-    height: 512px;
+    width: 100%;
+    height: 30vh;
     margin: 0 auto;
-    padding: 10;
 }
-
 
 .link{
     color:white;
@@ -14,10 +12,11 @@ model-viewer{
 }
 
 .link-image{
-    height: 50vh;
+    height: 40vh;
     transition: transform 200ms;
-    margin: 1rem;
+    margin: 0.5rem;
 }
+
 a:hover{
     transform: scale(1.05);
     transition: transform 200ms;
