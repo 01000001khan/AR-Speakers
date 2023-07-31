@@ -28,3 +28,11 @@ a:hover{
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+input {
+    margin: 0.2rem;
+}
+
+form {
+    margin: 0px;
+}
