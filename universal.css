@@ -31,6 +31,8 @@ a:hover{
 
 input {
     margin: 0.2rem;
+    text-align: center;
+    width: 60%;
 }
 
 form {
