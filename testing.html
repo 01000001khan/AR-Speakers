@@ -15,7 +15,7 @@
       <input type="submit" value="Home Page" />
     </form>
         
-    <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1.glb" ios-src="assets/models/decor/decorC1.usdz">
+    <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1.glb" ios-src="assets/models/decor/decorC1.usdz" onload="screenTexture(this)">
       <input type="range" min="0" max="0.99" step="0.01" value="0.5" oninput="animationUpdate(this)" onload="animationUpdate(this)">
     </model-viewer>
 
@@ -130,6 +130,13 @@
   function animationUpdate(elem){
       elem.parentElement.pause();
       elem.parentElement.currentTime = elem.value;
+  }
+
+  function screenTexture(elem){
+      const material = elem.model.material[7];
+      const video = modelViewerAnimated.createVideoTexture("/assets/textures/particles.mp4");
+
+      material.pbrMetallicRoughness.setTexture(video);
   }
   </script>
   
