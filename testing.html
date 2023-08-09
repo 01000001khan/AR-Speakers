@@ -133,10 +133,10 @@
   }
 
   function screenTexture(elem){
-      const material = elem.model.material[7];
-      const video = modelViewerAnimated.createVideoTexture("/assets/textures/particles.mp4");
-
-      material.pbrMetallicRoughness.setTexture(video);
+      const video = elem.createVideoTexture("/assets/textures/particles.mp4");
+      const {baseColorTexture} = elem.model.material[7].pbrMetallicRoughness;
+      
+      baseColorTexture.setTexture(video);
   }
   </script>
   
