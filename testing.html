@@ -19,7 +19,7 @@
       <input type="range" min="0" max="0.99" step="0.01" value="0.5" oninput="animationUpdate(this)" onload="animationUpdate(this)">
     </model-viewer>
 
-    <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1 b.glb" load="screenTexture(this, 0)" id="walldemo">
+    <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1 b.glb" load="screenTexture(this)" id="walldemo">
       <input type="range" min="0" max="0.99" step="0.01" value="0.5" oninput="animationUpdate(this)" onload="animationUpdate(this)">
     </model-viewer>
 
@@ -130,18 +130,24 @@
   function animationUpdate(elem){
       elem.parentElement.pause();
       elem.parentElement.currentTime = elem.value;
+
+      setTimeout(() => {
+        elem.parentElement.pause();
+      },2500);
   }
 
-  function screenTexture(elem, i){
-
-    if (i++ < 10) setTimeout(() => {
-      elem.model.materials[7]["emissiveTexture"].setTexture(
-        elem.createVideoTexture("./assets/textures/particles.mp4")
-      );
-      screenTexture(elem, i);
-      // Recursion 10 times
-    }, 500);
-  }
+  function screenTexture(elem){
+    mat = elem.model.materials[7]["emissiveTexture"];
+    video = elem.createVideoTexture("./assets/textures/particles.mp4");
+    console.log("texture update")
+    if (mat.texture.source.type != "external"){
+      setTimeout(() => {
+        mat.setTexture(video);
+        screenTexture(elem);
+      }, 500);
+    }
+  }  
+  
   </script>
   
 </body>
