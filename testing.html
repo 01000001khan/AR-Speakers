@@ -134,9 +134,7 @@
 
   function screenTexture(elem){
       const video = elem.createVideoTexture("./assets/textures/particles.mp4");
-      const {baseColorTexture} = elem.model.materials[7].pbrMetallicRoughness;
-      
-      baseColorTexture.setTexture(video);
+      elem.model.materials[7]["emissiveTexture"].setTexture(video);
   }
   </script>
   
