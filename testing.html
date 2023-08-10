@@ -136,17 +136,17 @@
       },2500);
   }
 
-  function screenTexture(elem){
-    console.log("texture update")
-    mat = elem.model.materials[7]["emissiveTexture"];
-    video = elem.createVideoTexture("./assets/textures/particles.mp4");
+  // function screenTexture(elem){
+  //   console.log("texture update")
+  //   mat = elem.model.materials[7]["emissiveTexture"];
+  //   video = elem.createVideoTexture("./assets/textures/particles.mp4");
 
-    if (mat.texture.source.type !== "external"){
-      setTimeout(() => {
-        if (document.readyState === "complete") mat.setTexture(video);
-        screenTexture(elem);
-      }, 500);
-    }
+  //   if (mat.texture.source.type !== "external"){
+  //     setTimeout(() => {
+  //       if (document.readyState === "complete") mat.setTexture(video);
+  //       screenTexture(elem);
+  //     }, 500);
+  //   }
 
   }  
   
