@@ -151,6 +151,7 @@
       console.log("Screen attempt:",i)
       if (document.readyState === "complete"){ 
         mat.setTexture(video);
+        elem.pause();
       }else{
         screenTexture(elem, i++);
       }
