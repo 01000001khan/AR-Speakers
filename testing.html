@@ -141,12 +141,9 @@
     mat = elem.model.materials[7]["emissiveTexture"];
     video = elem.createVideoTexture("./assets/textures/particles.mp4");
 
-    if (
-      mat.texture.source.type!== "external" 
-      || document.readyState !== "complete"
-    ){
+    if (mat.texture.source.type!== "external"){
       setTimeout(() => {
-        mat.setTexture(video);
+        if (document.readyState === "complete") mat.setTexture(video);
         screenTexture(elem);
       }, 500);
     }
