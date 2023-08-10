@@ -138,26 +138,21 @@
 
 
   const wall = document.querySelector("#walldemo");
-  window.onload = () => {
-    screenTexture(wall)
-    console.log("Window");
-  }
-
   wall.onload = () => {
-    screenTexture(wall)
-    console.log("Wall");
+    screenTexture(wall, 1)
   }
 
-
-  function screenTexture(elem){
+  function screenTexture(elem, i){
     mat = elem.model.materials[7]["emissiveTexture"];
     video = elem.createVideoTexture("./assets/textures/particles.mp4");
 
+    
     setTimeout(() => {
+      console.log("Screen attempt:",i)
       if (document.readyState === "complete"){ 
         mat.setTexture(video);
       }else{
-        screenTexture(elem);
+        screenTexture(elem, i++);
       }
     }, 500);
   }  
