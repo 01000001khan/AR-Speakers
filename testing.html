@@ -136,7 +136,18 @@
       },2500);
   }
 
-  window.addEventListener("onload", screenTexture(document.querySelector("#walldemo")));
+
+  const wall = document.querySelector("#walldemo");
+  window.onload = () => {
+    screenTexture(wall)
+    console.log("Window");
+  }
+
+  wall.onload = () => {
+    screenTexture(wall)
+    console.log("Wall");
+  }
+
 
   function screenTexture(elem){
     mat = elem.model.materials[7]["emissiveTexture"];
