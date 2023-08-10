@@ -133,8 +133,10 @@
   }
 
   function screenTexture(elem){
+    setTimeout(() => {
       const video = elem.createVideoTexture("./assets/textures/particles.mp4");
       elem.model.materials[7]["emissiveTexture"].setTexture(video);
+    });
   }
   </script>
   
