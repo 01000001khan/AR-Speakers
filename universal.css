@@ -3,6 +3,7 @@ model-viewer{
     height: 70vh;
     margin: 0 1rem;
     padding: 0.5rem;
+    overflow: visible;
 }
 
 .link{
