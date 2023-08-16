@@ -127,6 +127,12 @@
     
   });
 
+  function animationLoad(elem){
+    elem.addEventListener("oninput", (e)=>{
+      animationUpdate(e);
+    });
+  }
+
   function animationUpdate(elem){
       elem.parentElement.pause();
       elem.parentElement.currentTime = elem.value;
