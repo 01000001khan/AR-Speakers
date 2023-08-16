@@ -16,11 +16,11 @@
     </form>
         
     <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1.glb" ios-src="assets/models/decor/decorC1.usdz">
-      <input type="range" min="0" max="0.99" step="0.01" value="0.5" onload="animationUpdate(this)">
+      <input type="range" min="0" max="0.99" step="0.01" value="0.5" oninput="animationUpdate(this)">
     </model-viewer>
 
     <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1 b.glb" id="walldemo">
-      <input type="range" min="0" max="0.99" step="0.01" value="0.5" onload="animationUpdate(this)">
+      <input type="range" min="0" max="0.99" step="0.01" value="0.5" oninput="animationUpdate(this)">
     </model-viewer>
 
     <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate environment-image="neutral" src="assets/models/general/martinLoganESLtest.glb">
@@ -108,9 +108,7 @@
         
         material.pbrMetallicRoughness.setRoughnessFactor(0.0);
         material.pbrMetallicRoughness.setMetallicFactor(0.0);
-            
       });
-
     }
 
       
@@ -127,12 +125,6 @@
     
   });
 
-
-  function animationLoad(elem){
-    elem.addEventListener("oninput", (e)=>{
-      animationUpdate(e);
-    });
-  }
 
   function animationUpdate(elem){
       elem.parentElement.pause();
