@@ -40,7 +40,7 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
 });
 
 let speaker;
-loader.load( './assets/camaro.glb', function ( gltf ) {
+loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf ) {
     let i = 0;
     speaker = gltf.scene;
 	scene.add( speaker );
@@ -59,7 +59,7 @@ const slider = document.getElementById("slider");
 // Render Loop
 function render() {
 
-    newframe = true;
+    let newframe = true;
 
     speaker.position.z = Math.sin(time)
     
