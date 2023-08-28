@@ -7,6 +7,9 @@ let core = new THREE.Mesh();
 scene.add(core);
 
 const loader = new GLTFLoader();
+let dt = 0;
+let time = 0;
+
 
 
 let camera = null;
@@ -22,7 +25,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 // renderer.toneMapping = THREE.ReinhardToneMapping
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1;
+renderer.toneMappingExposure = 4;
 
 
 document.body.appendChild( renderer.domElement );
@@ -36,25 +39,15 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
     scene.environment = texture;    
 });
 
-let meshes=[];
+let speaker = null;
 loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf ) {
-    let i = 0;
-    meshes[0] = gltf.scene;
-	scene.add( meshes[0] );
-    meshes[0].position.set(0, 0, -1);
-    // meshes[0].traverse(function (child) {
-    //     if (child.isMesh) {
-    //         child.castShadow = true
-    //     }
-    // });
+    speaker = gltf.scene;
+	scene.add( speaker );
 
 
     console.log(gltf.camera)
     console.log(gltf.cameras)
     camera = gltf.cameras[0];
-
-
-
 
 },undefined,function(error){console.error(error);});
 
@@ -62,24 +55,29 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 const slider = document.getElementById("slider");
 let time = 0;
 // Render Loop
-function render() {
+function render(t) {
 
     let newframe = true;
-    time += 0.1;
+    dt = t-time;
+    time = t*.001; // Seconds instead of ms
 
-    if (meshes[0]){
-        meshes[0].position.z = Math.sin(time)
+
+    if (speaker){ // for some reason we have to check if it exists before referencing it otherwise ✨ everything breaks ✨ :D
+        speaker.position.z = Math.sin(time) // test animation
     }
 
     requestAnimationFrame( render );
-    // Render the scene
-    if (newframe){
+
+    // The actual render call
+    if (newframe // stop rendering every frame to save performance when not moving
+        && camera){ // doubles as a check to make sure the model's actually loaded
+
         renderer.render(scene, camera);
     }
-};
+}
 
 
-render();
+render(0);
 
 
 
