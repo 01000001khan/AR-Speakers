@@ -9,10 +9,7 @@ scene.add(core);
 const loader = new GLTFLoader();
 
 
-let camera = new THREE.PerspectiveCamera(60, window.innerWidth/(window.innerHeight*0.5), 0.1, 1000 );
-camera.position.z = 5;
-camera.rotation.x = -Math.PI / 8;
-camera.position.y = 2.5;
+let camera = null;
 
 let renderer = new THREE.WebGLRenderer({antialias:true});
 
@@ -51,6 +48,14 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     //     }
     // });
 
+
+    console.log(gltf.camera)
+    console.log(gltf.cameras)
+    camera = gltf.cameras[0];
+
+
+
+
 },undefined,function(error){console.error(error);});
 
 
@@ -87,4 +92,4 @@ addEventListener("resize", (e) => {
 });
 
 
-document.querySelector("canvas").appendTo(document.getElementById("stuff"));
+document.getElementById("stuff").append(document.querySelector("canvas"));
