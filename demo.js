@@ -55,11 +55,12 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 
 
 const slider = document.getElementById("slider");
-
+let time = 0;
 // Render Loop
 function render() {
 
     let newframe = true;
+    time += 0.1;
 
     if (meshes[0]){
         meshes[0].position.z = Math.sin(time)
