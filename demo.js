@@ -39,13 +39,13 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
     scene.environment = texture;    
 });
 
-let speaker;
+let meshes=[];
 loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf ) {
     let i = 0;
-    speaker = gltf.scene;
-	scene.add( speaker );
-    speaker.position.set(i*separation, 0, -1);
-    // speaker.traverse(function (child) {
+    meshes[0] = gltf.scene;
+	scene.add( meshes[0] );
+    meshes[0].position.set(i*separation, 0, -1);
+    // meshes[0].traverse(function (child) {
     //     if (child.isMesh) {
     //         child.castShadow = true
     //     }
@@ -61,8 +61,9 @@ function render() {
 
     let newframe = true;
 
-    speaker.position.z = Math.sin(time)
-    
+    if (meshes[0]){
+        meshes[0].position.z = Math.sin(time)
+    }
 
     requestAnimationFrame( render );
     // Render the scene
