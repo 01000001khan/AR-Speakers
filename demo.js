@@ -109,9 +109,4 @@ addEventListener("resize", (e) => {
 
 
 
-let stuff = []
-for (var name in this) {
-    stuff[name] = name;
-    stuff[name]=this[name]
-}
-window.stuff = stuff // Allow debug access to all the variables in here
+window.speaker = speaker // Allow debug access to the speaker object
