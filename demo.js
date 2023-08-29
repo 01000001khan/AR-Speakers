@@ -23,14 +23,11 @@ renderer.setClearColor("#000");
 renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
 renderer.setPixelRatio( window.devicePixelRatio );
 
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+renderer.shadowMap.enabled = false;
+//renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 // renderer.toneMapping = THREE.ReinhardToneMapping
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 4;
-
-
-document.body.appendChild( renderer.domElement );
 
 
 
@@ -79,16 +76,13 @@ function render(t) {
         renderer.render(scene, camera); // The actual render call
 
         if (!inposition){
-            document.getElementById("stuff").append(document.querySelector("canvas"));
+            document.getElementById("stuff").appendChild(renderer.domElement);
             inposition = true;
         }
     }
 }
 
-
 render(0);
-
-
 
 
 addEventListener("resize", (e) => {
@@ -100,6 +94,9 @@ addEventListener("resize", (e) => {
 
 
 
-
-// Wuzzis do?
-console.log(this);
+stuff = []
+for (var name in this) {
+    stuff[name] = name;
+    stuff[name]=this[name]
+}
+window.stuff = stuff // Allow debug access to all the variables in here
