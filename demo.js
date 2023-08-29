@@ -37,6 +37,10 @@ renderer.toneMappingExposure = 4;
 
 // LIGHT ////////////////
 
+const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
+scene.add( light );
+
+
 new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) {
 
     texture.mapping = THREE.EquirectangularReflectionMapping;
@@ -49,6 +53,12 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 
     speaker = gltf.scene;
 	scene.add( speaker );
+
+    speaker.traverse(function (child) {
+        if (child.isMesh) {
+            child.material.envMap = scene.environment;
+        }
+    });
 
     camera = gltf.cameras[0];
 
