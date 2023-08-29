@@ -31,7 +31,7 @@ renderer.shadowMap.enabled = false;
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 // renderer.toneMapping = THREE.ReinhardToneMapping
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 4;
+renderer.toneMappingExposure = 1;
 
 
 
