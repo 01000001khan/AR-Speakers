@@ -1,3 +1,7 @@
+// Reimplement this in babylon.js later, apparently it can look better and has superior AR support.
+
+
+
 import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 import { RGBELoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/RGBELoader.js';
@@ -85,6 +89,7 @@ function render(t) {
 render(0);
 
 
+
 addEventListener("resize", (e) => {
     camera.aspect = window.innerWidth/(window.innerHeight*0.5);
     renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
@@ -94,7 +99,7 @@ addEventListener("resize", (e) => {
 
 
 
-stuff = []
+let stuff = []
 for (var name in this) {
     stuff[name] = name;
     stuff[name]=this[name]
