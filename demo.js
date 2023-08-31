@@ -69,6 +69,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 
     camera = gltf.cameras[0];
 
+    setWindow();
+
 },undefined,function(error){console.error(error);});
 
 
@@ -114,7 +116,7 @@ function render(t) {
 render(0);
 
 
-function setWindow(e){
+function setWindow()){
     camera.aspect = window.innerWidth/(window.innerHeight*0.5);
     renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
     camera.updateProjectionMatrix();
@@ -122,7 +124,6 @@ function setWindow(e){
 }
 
 addEventListener("resize", setWindow);
-addEventListener("onload", setWindow);
 
 
 
