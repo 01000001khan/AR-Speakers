@@ -125,11 +125,12 @@ function render(t) {
     }
 
 
-    if (camera){ // for some reason we have to check if it exists before referencing it otherwise ✨ everything breaks ✨ :D
-        camera.position.x = Math.sin(time)*.3 // test animation
-        newframe = true;
-    }
+    // if (camera){ // for some reason we have to check if it exists before referencing it otherwise ✨ everything breaks ✨ :D
+    //     camera.position.x = Math.sin(time)*.3 // test animation
+    //     newframe = true;
+    // }
 
+    
 
     // Consider adding reflection probe (cube camera in THREE) to the lamp, especially if reducing normal intensity or somethin'
 
@@ -160,7 +161,3 @@ function setWindow(){
 }
 
 addEventListener("resize", setWindow);
-
-window.thingy = function(e){
-    e();
-}
