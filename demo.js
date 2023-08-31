@@ -78,17 +78,15 @@ let multMat =  new THREE.ShaderMaterial({
     `
 })
 
-
+window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf ) {
 
-    speaker = gltf.scene;
+    window.speaker = gltf.scene;
     mixer = new THREE.AnimationMixer(speaker);
     gltf.animations.forEach( ( clip ) => {
         mixer.clipAction( clip ).play();  
     });
-    
-    window.speaker = speaker
-    
+        
     speaker.traverse(function (child) {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
@@ -97,6 +95,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
                 child.renderOrder = 100;
             }
             
+            console.log(child.name)
+            meshes.push(child);
             if (child.name == "Bounce Light"){
                 child.material = multMat;
                 console.log(child)
