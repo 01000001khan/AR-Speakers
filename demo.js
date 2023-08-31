@@ -149,7 +149,7 @@ function render(t) {
 render(0);
 
 
-function setWindow()){
+function setWindow(){
     camera.aspect = window.innerWidth/(window.innerHeight*0.5);
     renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
     camera.updateProjectionMatrix();
