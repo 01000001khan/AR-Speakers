@@ -22,8 +22,6 @@ let camera = null;
 let mixer = null;
 let speaker = null;
 let anim = null;
-const slider = document.getElementById("slider");
-
 
 renderer.setClearColor("#000");
 
@@ -170,8 +168,10 @@ function setWindow(){
 
 addEventListener("resize", setWindow);
 
-slider.oninput((e)=>{
+
+const slider = document.getElementById("slider");
+slider.addEventListener("input", (e)=>{
     anim.stop();
     anim.play( true, e.value );
-    console.log(value);
+    console.log(e.value);
 });
