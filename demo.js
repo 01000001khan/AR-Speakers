@@ -124,8 +124,8 @@ function render(t) {
     }
 
 
-    if (speaker){ // for some reason we have to check if it exists before referencing it otherwise ✨ everything breaks ✨ :D
-        speaker.position.z = Math.sin(time) // test animation
+    if (camera){ // for some reason we have to check if it exists before referencing it otherwise ✨ everything breaks ✨ :D
+        camera.position.z = Math.sin(time) // test animation
     }
 
 
