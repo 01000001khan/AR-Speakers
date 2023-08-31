@@ -97,7 +97,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
             
             console.log(child.name)
             meshes.push(child);
-            if (child.name == "Bounce Light"){
+            if (child.name.includes("Light")){
                 child.material = multMat;
                 console.log(child)
                 console.log(multMat)
