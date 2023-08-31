@@ -81,12 +81,12 @@ let multMat =  new THREE.ShaderMaterial({
 window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf ) {
 
-    window.speaker = gltf.scene;
+    speaker = gltf.scene;
     mixer = new THREE.AnimationMixer(speaker);
-    gltf.animations.forEach( ( clip ) => {
-        mixer.clipAction( clip ).play();  
+    gltf.animations.forEach( (clip) => {
+        mixer.clipAction(clip).play();  
     });
-        
+
     speaker.traverse(function (child) {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
