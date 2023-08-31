@@ -173,4 +173,5 @@ addEventListener("resize", setWindow);
 slider.oninput((e)=>{
     anim.stop();
     anim.play( true, e.value );
+    console.log(value);
 });
