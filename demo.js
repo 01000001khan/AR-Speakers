@@ -60,6 +60,10 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     speaker.traverse(function (child) {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
+
+            if (child.name.includes("Plant")){
+                child.renderOrder = 100;
+            }
         }
     });
 
