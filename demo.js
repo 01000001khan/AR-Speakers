@@ -172,6 +172,6 @@ addEventListener("resize", setWindow);
 const slider = document.getElementById("slider");
 slider.addEventListener("input", (e)=>{
     anim.stop();
-    anim.play( true, e.value );
-    console.log(e.value);
+    anim.play( true, slider.value );
+    console.log(slider.value);
 });
