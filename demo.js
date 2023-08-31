@@ -85,6 +85,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 	scene.add( speaker );
     mixer = new THREE.AnimationMixer(speaker);
 
+    window.speaker = speaker
 
     speaker.traverse(function (child) {
         if (child.isMesh) {
@@ -160,6 +161,6 @@ function setWindow(){
 
 addEventListener("resize", setWindow);
 
-
-
-window.speaker = speaker // Allow debug access to the speaker object
+window.thingy = function(e){
+    e();
+}
