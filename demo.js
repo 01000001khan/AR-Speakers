@@ -114,13 +114,15 @@ function render(t) {
 render(0);
 
 
-
-addEventListener("resize", (e) => {
+function setWindow(e){
     camera.aspect = window.innerWidth/(window.innerHeight*0.5);
     renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
     camera.updateProjectionMatrix();
     console.log("rezised :P");
-});
+}
+
+addEventListener("resize", setWindow);
+addEventListener("onload", setWindow);
 
 
 
