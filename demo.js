@@ -21,6 +21,7 @@ let inposition = false;
 let camera = null;
 let mixer = null;
 let speaker = null;
+let anim = null;
 const slider = document.getElementById("slider");
 
 
@@ -86,6 +87,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     gltf.animations.forEach( (clip) => {
         mixer.clipAction(clip).play();  
     });
+    anim = gltf.animations[0];
 
     speaker.traverse(function (child) {
         if (child.isMesh) {
@@ -167,3 +169,8 @@ function setWindow(){
 }
 
 addEventListener("resize", setWindow);
+
+slider.oninput((e)=>{
+    anim.stop();
+    anim.play( true, e.value );
+});
