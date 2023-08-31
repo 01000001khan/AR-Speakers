@@ -84,8 +84,10 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     mixer = new THREE.AnimationMixer(speaker);
     gltf.animations.forEach( (clip) => {
         mixer.clipAction(clip).play();  
+        console.log(clip)
     });
     anim = gltf.animations[0];
+    console.log("Anim",anim);
 
     speaker.traverse(function (child) {
         if (child.isMesh) {
