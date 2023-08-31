@@ -115,7 +115,7 @@ function render(t) {
     requestAnimationFrame( render );    // Request the next frame before we're actually rendered
                                         // this one because js is weird and everything runs async.
                                         // Keeps the timing accurate
-    let newframe = true;
+    let newframe = false;
     dt = t-time;
     time = t*.001; // Seconds instead of ms
 
@@ -125,7 +125,8 @@ function render(t) {
 
 
     if (camera){ // for some reason we have to check if it exists before referencing it otherwise ✨ everything breaks ✨ :D
-        camera.position.z = Math.sin(time) // test animation
+        camera.position.x = Math.sin(time)*.3 // test animation
+        newframe = true;
     }
 
 
