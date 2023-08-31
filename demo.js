@@ -95,8 +95,10 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
                 child.renderOrder = 100;
             }
 
-            if (child.name.includes("Bounce Light")){
+            if (child.name == "Bounce Light"){
                 child.material = multMat;
+                console.log(child)
+                console.log(multMat)
             }
         }
     });
@@ -105,6 +107,9 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     camera.aspect = 16/9;
 
     setWindow();
+
+    const action = mixer.clipAction( speaker.animations[0] );
+    action.play();
 
 },undefined,function(error){console.error(error);});
 
@@ -130,7 +135,7 @@ function render(t) {
     //     newframe = true;
     // }
 
-    
+
 
     // Consider adding reflection probe (cube camera in THREE) to the lamp, especially if reducing normal intensity or somethin'
 
