@@ -101,6 +101,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     });
 
     camera = gltf.cameras[0];
+    camera.aspect = 9/16;
 
     setWindow();
 
@@ -149,9 +150,9 @@ function render(t) {
 render(0);
 
 
+// camera.aspect = 9/16; // Needs to be set in the function below if it will change
 function setWindow(){
-    camera.aspect = window.innerWidth/(window.innerHeight*0.5);
-    renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
+    renderer.setSize( window.innerWidth, window.innerWidth * 9/16 );
     camera.updateProjectionMatrix();
     console.log("rezised :P");
 }
