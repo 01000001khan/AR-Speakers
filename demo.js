@@ -19,6 +19,7 @@ let dt = 0;
 let time = 0;
 let inposition = false;
 let camera = null;
+let mixer = null;
 const slider = document.getElementById("slider");
 
 
@@ -31,7 +32,7 @@ renderer.shadowMap.enabled = false;
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 // renderer.toneMapping = THREE.ReinhardToneMapping
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1;
+renderer.toneMappingExposure = 3;
 
 
 
@@ -53,6 +54,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 
     speaker = gltf.scene;
 	scene.add( speaker );
+    mixer = new THREE.AnimationMixer(speaker);
+
 
     speaker.traverse(function (child) {
         if (child.isMesh) {
@@ -68,10 +71,17 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 
 // Recursive render Loop
 function render(t) {
-
+    
+    requestAnimationFrame( render );    // Request the next frame before we're actually rendered
+                                        // this one because js is weird and everything runs async.
+                                        // Keeps the timing accurate
     let newframe = true;
     dt = t-time;
     time = t*.001; // Seconds instead of ms
+
+    if ( mixer ){
+        mixer.update( dt );
+    }
 
 
     if (speaker){ // for some reason we have to check if it exists before referencing it otherwise ✨ everything breaks ✨ :D
@@ -79,9 +89,10 @@ function render(t) {
     }
 
 
+    // Consider adding reflection probe (cube camera in THREE) to the lamp, especially if reducing normal intensity or somethin'
 
-    requestAnimationFrame( render );    // Request the next frame before we're actually rendered
-                                        // this one because js is weird and everything runs async
+    // Consider adding temporal antialiasing. Sample code here: 
+    // https://git.ucsc.edu/jlao3/CMPM163Labs/-/blob/fc061ee35444d648b200a9a5fc83c32407a7c590/three.js-master/examples/webgl_postprocessing_taa.html
 
     
     if (newframe                        // stop rendering every frame to save performance when not moving
