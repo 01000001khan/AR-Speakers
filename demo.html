@@ -38,12 +38,10 @@
       }, 2500);
     }
 
-    document.querySelectorAll('model-viewer').forEach(()=>{
-      this.onload = ()=>{
-        this.pause();
-        animationUpdate(this.firstChild);
-      }
-    });
+    let m = document.querySelector('model-viewer')
+    m.onload = ()=>{
+      animationUpdate(m.firstChild);
+    }
 
     const wall = document.querySelector("#walldemo");
     wall.onload = () => {
