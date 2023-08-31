@@ -121,7 +121,7 @@ function render(t) {
     requestAnimationFrame( render );    // Request the next frame before we're actually rendered
                                         // this one because js is weird and everything runs async.
                                         // Keeps the timing accurate
-    let newframe = false;
+    let newframe = true;
     dt = t-time;
     time = t*.001; // Seconds instead of ms
 
