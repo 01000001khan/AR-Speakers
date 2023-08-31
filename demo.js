@@ -152,7 +152,7 @@ render(0);
 
 // camera.aspect = 9/16; // Needs to be set in the function below if it will change
 function setWindow(){
-    renderer.setSize( window.innerWidth, window.innerWidth * 9/16 );
+    renderer.setSize( window.innerWidth, window.innerWidth * 16/9 );
     camera.updateProjectionMatrix();
     console.log("rezised :P");
 }
