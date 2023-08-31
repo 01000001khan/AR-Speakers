@@ -14,12 +14,13 @@ let renderer = new THREE.WebGLRenderer({antialias:true});
 scene.add(core);
 
 
-// My non-critical variables (except camera. if you remove that, brace for errors)
+// My non-critical variables
 let dt = 0;
 let time = 0;
 let inposition = false;
 let camera = null;
 let mixer = null;
+let speaker = null;
 const slider = document.getElementById("slider");
 
 
@@ -28,7 +29,7 @@ renderer.setClearColor("#000");
 renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
 renderer.setPixelRatio( window.devicePixelRatio );
 
-renderer.shadowMap.enabled = false;
+renderer.shadowMap.enabled = false; // Don't need any realtime shadows. Everything is baked :)
 //renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 // renderer.toneMapping = THREE.ReinhardToneMapping
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -49,7 +50,35 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
 
 });
 
-let speaker = null;
+let uniforms = {
+    colorB: {type: 'vec3', value: new THREE.Color(0xACB6E5)},
+    colorA: {type: 'vec3', value: new THREE.Color(0x74ebd5)}
+}
+
+let multMat =  new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    fragmentShader: `
+        uniform vec3 colorA; 
+        uniform vec3 colorB; 
+        varying vec3 vUv;
+
+        void main() {
+            gl_FragColor = vec4(mix(colorA, colorB, vUv.x), 1.0);
+        }
+    `,
+    vertexShader: `
+        varying vec3 vUv; 
+
+        void main() {
+            vUv = position; 
+
+            vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+            gl_Position = projectionMatrix * modelViewPosition; 
+        }
+    `
+})
+
+
 loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf ) {
 
     speaker = gltf.scene;
@@ -63,6 +92,10 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 
             if (child.name.includes("Plant")){
                 child.renderOrder = 100;
+            }
+
+            if (child.name.includes("Bounce Light")){
+                child.material = multMat;
             }
         }
     });
