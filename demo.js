@@ -1,4 +1,4 @@
-// Reimplement this in babylon.js later, apparently it can look better and has superior AR support.
+// Consider reimplementing in Babylon.js, apparently it can look better and has superior AR support.
 
 
 
@@ -92,33 +92,39 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     speaker.traverse(function (child) {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
+            meshes.push(child);
             
             if (child.name.includes("Plant")){
                 child.renderOrder = 100;
             }
             
+
+
             if (child.name.includes("tv")){
                 //Get your video element:
                 const video = document.getElementById("video");
                 video.onloadeddata = ()=>{
                     video.play();
                 };
-            
+
                 //Create your video texture:
                 const videoTexture = new THREE.VideoTexture(video);
                 videoTexture.needsUpdate = true;
-                const videoMaterial = new THREE.MeshBasicMaterial({
-                    map: videoTexture,
+                const videoMaterial = new THREE.MeshStandardMaterial({
+                    color: 0x0,
+                    emissiveMap: videoTexture,
                     side: THREE.FrontSide,
-                    toneMapped: false,
+                    toneMapped: true,
+                    metalness: 0,
+                    roughness: 1,
                 });
                 videoMaterial.needsUpdate = true;
                 
                 child.material = videoMaterial;
             }
             
-            console.log(child.name)
-            meshes.push(child);
+
+
             if (child.name.includes("Light")){
                 child.material = multMat;
             }
