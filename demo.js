@@ -80,15 +80,15 @@ let multMat =  new THREE.ShaderMaterial({
 window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf ) {
 
+    
     speaker = gltf.scene;
     mixer = new THREE.AnimationMixer(speaker);
-    gltf.animations.forEach( (clip) => {
-        mixer.clipAction(clip).play();  
-        console.log(clip)
-    });
-    anim = gltf.animations[0];
-    console.log("Anim",anim);
 
+    anim = gltf.animations[0];
+    mixer.clipAction(anim).play();
+    mixer.clipAction(anim).optimize();
+    console.log("Anim",anim);
+    
     speaker.traverse(function (child) {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
@@ -97,12 +97,30 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
                 child.renderOrder = 100;
             }
             
+            if (child.name.includes("tv")){
+                //Get your video element:
+                const video = document.getElementById("video");
+                video.onloadeddata = ()=>{
+                    video.play();
+                };
+            
+                //Create your video texture:
+                const videoTexture = new THREE.VideoTexture(video);
+                videoTexture.needsUpdate = true;
+                const videoMaterial = new THREE.MeshBasicMaterial({
+                    map: videoTexture,
+                    side: THREE.FrontSide,
+                    toneMapped: false,
+                });
+                videoMaterial.needsUpdate = true;
+                
+                child.material = videoMaterial;
+            }
+            
             console.log(child.name)
             meshes.push(child);
             if (child.name.includes("Light")){
                 child.material = multMat;
-                console.log(child)
-                console.log(multMat)
             }
         }
     });
@@ -173,7 +191,8 @@ addEventListener("resize", setWindow);
 
 const slider = document.getElementById("slider");
 slider.addEventListener("input", (e)=>{
-    anim.stop();
-    anim.play( true, slider.value );
+    // mixer.clipAction(anim).stop();
+    // mixer.clipAction(anim).play( true, slider.value );
+    mixer.setTime(slider.value);
     console.log(slider.value);
 });
