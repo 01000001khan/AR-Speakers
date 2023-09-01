@@ -23,6 +23,12 @@ let mixer = null;
 let speaker = null;
 let anim = null;
 
+const video = document.getElementById("video");
+video.onloadeddata = ()=>{
+    video.play();
+};
+
+
 renderer.setClearColor("#000");
 
 renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
@@ -85,7 +91,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     mixer = new THREE.AnimationMixer(speaker);
 
     anim = gltf.animations[0];
-    mixer.clipAction(anim).play();
+    // mixer.clipAction(anim).play();
     anim.optimize();
     console.log("Anim",anim);
     
@@ -94,18 +100,16 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
             child.material.envMap = scene.environment;
             meshes.push(child);
             
-            if (child.name.includes("Plant")){
+            if (child.name.includes("Plant")){ // Sort all the foliage after the background
                 child.renderOrder = 100;
             }
             
+            if (child.name.includes("vase")){ // And vase on top, though zwrite should work safely
+                child.renderOrder = 120;
+            }
 
 
-            if (child.name.includes("tv")){
-                //Get your video element:
-                const video = document.getElementById("video");
-                video.onloadeddata = ()=>{
-                    video.play();
-                };
+            if (child.name == "Plane_2"){ // TV Screen
 
                 //Create your video texture:
                 const videoTexture = new THREE.VideoTexture(video);
@@ -135,7 +139,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
     camera.aspect = 16/9;
     
     
-    scene.add( speaker );
+    scene.add(speaker);
     setWindow();
 
 },undefined,function(error){console.error(error);});
@@ -197,8 +201,6 @@ addEventListener("resize", setWindow);
 
 const slider = document.getElementById("slider");
 slider.addEventListener("input", (e)=>{
-    // mixer.clipAction(anim).stop();
-    // mixer.clipAction(anim).play( true, slider.value );
     mixer.setTime(slider.value);
-    console.log(slider.value);
+    console.log("Animation position:", slider.value);
 });
