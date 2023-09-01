@@ -86,7 +86,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', function ( gltf
 
     anim = gltf.animations[0];
     mixer.clipAction(anim).play();
-    mixer.clipAction(anim).optimize();
+    anim.optimize();
     console.log("Anim",anim);
     
     speaker.traverse(function (child) {
