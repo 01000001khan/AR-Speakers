@@ -86,7 +86,7 @@ varying float vBlend;
 
 void main() {
     vec2 coords = (gl_PointCoord - .5)* mat2(vAngle.x, vAngle.y, -vAngle.y, vAngle.x) + .5;
-    //gl_FragColor.xyz *= texture2D(tex, coords).xyz;
+    gl_FragColor = texture2D(tex, coords);
     gl_FragColor.xyz *= 2.;
 }
 `
