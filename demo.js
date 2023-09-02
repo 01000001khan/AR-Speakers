@@ -68,7 +68,9 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             child.material.envMap = scene.environment;
             meshes.push(child);
 
-
+            walnut = tloader.load('./assets/textures/walnut.jpg', ( texture ) => {
+                texture.colorSpace = THREE.SRGBColorSpace;
+            });
             
             if (child.name.includes("Plant")){
                 // Sort all the foliage after the background
@@ -98,7 +100,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 const videoMaterial = new THREE.MeshStandardMaterial({
                     color: 0x0,
                     emissive: 0xffffff,
-                    emissiveMap: tloader.load('./assets/textures/walnut.jpg'),
+                    emissiveMap: walnut,
                     side: THREE.FrontSide,
                     emissiveIntensity: 1.2,
                     toneMapped: true,
@@ -115,24 +117,22 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/vaseDiffuse.exr'),
-                    depthTest: true,
-                    depthWrite: true,
-                    transparent: true,
-                    blending: THREE.AdditiveBlending,
+                    map: walnut
+                    // eloader.load('./assets/textures/vaseDiffuse.exr'),
                 });
+                child.material.blending = THREE.MultiplyBlending;
+                child.material.transparent = true;
                 
                 console.log("Vase Diffuse", child);
             }
             
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/lampDiffuse.exr'),
-                    depthTest: true,
-                    depthWrite: true,
-                    transparent: true,
-                    blending: THREE.MultiplyBlending,
+                    map: walnut
+                    // eloader.load('./assets/textures/lampDiffuse.exr'),
                 });
+                child.material.blending = THREE.MultiplyBlending;
+                child.material.transparent = true;
                 
                 console.log("Lamp Diffuse", child);
             }
