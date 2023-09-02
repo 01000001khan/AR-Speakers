@@ -18,7 +18,7 @@ scene.add(core);
 
 // My non-critical variables
 const slider = document.getElementById("slider");
-let lastSliderPos = slider.value;
+let lastSliderPos = -1;
 let dt = 0;
 let time = 0;
 let inposition = false;
@@ -117,7 +117,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
 
 
-            if (child.name == "Plane_1"){ // TV Screen
+            if (child.name == "Plane_2"){ // TV Screen
 
                 //Create your video texture:
                 const videoTexture = new THREE.VideoTexture(video);
@@ -194,7 +194,8 @@ function render(t) {
     
     if ( mixer ){
         // mixer.update( dt ); // I'm going to hijack this to set the animation position :P
-        mixer.update( 1 - (slider.value - lastSliderPos));
+        mixer.update( 1 + (slider.value - lastSliderPos));
+        lastSliderPos = slider.value;
     }
     
     
@@ -221,8 +222,6 @@ function render(t) {
         document.getElementById("stuff").appendChild(renderer.domElement);
         inposition = true;
     }
-    
-    lastSliderPos = slider.value;
 }
 
 render(0);
