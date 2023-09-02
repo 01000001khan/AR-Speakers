@@ -197,14 +197,14 @@ function render(t) {
     dt = t*.001-time;
     time = t*.001; // Seconds instead of ms
     
-    let newframe = lastSliderPos != slider.value;
+    let newframe = animAction.time != slider.value;
     
-    // for some reason we have to check every time that it exists before referencing it otherwise ✨ everything breaks ✨ :D
-    if ( mixer ){
-        // mixer.update( dt ); // I'm going to hijack this to set the animation position :P
-        mixer.update( anim.duration + (slider.value - lastSliderPos));
-        lastSliderPos = slider.value;
-    }
+    // if ( mixer ){
+    //     // mixer.update( dt ); // I'm going to hijack this to set the animation position :P
+    //     mixer.update( anim.duration + (slider.value - lastSliderPos));
+    //     lastSliderPos = slider.value;
+    // }
+    setAnimTime(slider.value);
     
     // Consider adding reflection probe (cube camera in THREE) to the lamp, especially if reducing normal intensity or somethin'
     
@@ -212,14 +212,15 @@ function render(t) {
     // https://git.ucsc.edu/jlao3/CMPM163Labs/-/blob/fc061ee35444d648b200a9a5fc83c32407a7c590/three.js-master/examples/webgl_postprocessing_taa.html
     // If !newframe, accumulate, otherwise render new frame
     
-    if (newframe                        // stop rendering every frame to save performance when not moving
-        && camera){                     // doubles as a check to make sure the model's actually loaded
-        renderer.render(scene, camera); // The actual render call
-    }
-
-    if (!inposition && camera){
-        document.getElementById("stuff").appendChild(renderer.domElement);
-        inposition = true;
+    if (camera){ // serves to make sure camera exists for render call, makes sure model is loaded and stuff initialized for DOM stuff
+        if (newframe){
+            renderer.render(scene, camera); // The actual render call
+        }
+    
+        if (!inposition){
+            document.getElementById("stuff").appendChild(renderer.domElement);
+            inposition = true;
+        }
     }
 }
 
@@ -230,3 +231,25 @@ function setWindow(){
 }
 
 addEventListener("resize", setWindow);
+
+
+// anim = gltf.animations[0];
+// anim.optimize();
+// animAction = mixer.clipAction(anim);
+// animAction.play();
+
+
+// function setAnimTime(a, t){
+//     aAction = mixer.clipAction(a);
+//     if ( mixer ){
+//         mixer.update( a.duration + (t - aAction.time));
+//     }
+// }
+
+
+
+function setAnimTime(t){
+    if ( mixer ){
+        mixer.update( anim.duration + (t - animAction.time));
+    }
+}
