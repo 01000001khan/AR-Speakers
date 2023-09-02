@@ -47,10 +47,10 @@ renderer.toneMappingExposure = 3;
 
 
 
-// LIGHT ////////////////
+// // LIGHT ////////////////
 
-const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
-scene.add( light );
+// const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
+// scene.add( light );
 
 
 new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) {
@@ -106,21 +106,25 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
             meshes.push(child);
+
+
             
-            if (child.name.includes("Plant")){ // Sort all the foliage after the background
+            if (child.name.includes("Plant")){
+                // Sort all the foliage after the background
                 child.renderOrder = 100;
             }
-            
-            if (child.name == "vase"){ // And vase on top, though zwrite should work safely anyways given vase is full alpha
+
+            if (child.name == "vase"){
+                // And vase on top, though zwrite should work safely anyways given vase is full alpha
                 child.renderOrder = 120;
                 child.material = new THREE.MeshPhysicalMaterial({
                     roughnessMap: child.material.roughnessMap,
                     transmission: 1,
                     thickness: 1,
+                    envMap: child.material.envMap
                 });
                 console.log("Vase", child)
             }
-
 
             if (child.name == "screen"){ // TV Screen
 
@@ -137,16 +141,14 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     toneMapped: true,
                     metalness: 0,
                     roughness: 1,
+                    envMap: child.material.envMap
                 });
                 videoMaterial.needsUpdate = true;
                 
                 child.material = videoMaterial;
-
                 console.log("TV", child);
             }
             
-
-
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
                     map: eloader.load('./assets/textures/vaseDiffuse.exr'),
@@ -170,8 +172,6 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 
                 console.log("Lamp Diffuse", child);
             }
-
-
         }
     });
     
