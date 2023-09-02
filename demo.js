@@ -64,18 +64,23 @@ void main() {
 
 const fs = `
 uniform sampler2D tex;
+uniform sampler2D map;
+uniform vec2 res;
 varying vec2 vUv;
 
 void main() {
-    gl_FragColor = texture2D(tex, vUv);
-    gl_FragColor.xyz *= 2.;
+    gl_FragColor = texture2D(tex, gl_FragCoord.xy/res);
+    gl_FragColor.xyz *= texture2D(map, vUv);
 }
 `
 
 const uniforms = {
-    diffuseTexture: {
+    map: {
         value: tloader.load('./assets/textures/walnut.jpg')
         // eloader.load('./assets/textures/vaseDiffuse.exr')
+    },
+    res: {
+        value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
     }
 };
 
