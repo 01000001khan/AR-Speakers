@@ -52,58 +52,6 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
     scene.environment = texture;
 });
 
-const vs = `
-varying vec2 vUv;
-
-void main() {
-    vUv = uv;
-    vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-    gl_Position = projectionMatrix * modelViewPosition;
-}
-`
-
-const fs = `
-uniform sampler2D tex;
-uniform sampler2D map;
-uniform vec2 res;
-varying vec2 vUv;
-
-void main() {
-    gl_FragColor.xyz *= texture2D(map, vUv);
-    gl_FragColor.a = 1.;
-}
-`
-
-const uniforms = {
-    map: {
-        value: tloader.load('./assets/textures/walnut.jpg')
-        // eloader.load('./assets/textures/vaseDiffuse.exr')
-    },
-    res: {
-        value: new THREE.Vector2(renderer.domElement.width, renderer.domElement.height)
-    }
-};
-
-// let multMat =  new THREE.ShaderMaterial({
-//     uniforms: uniforms,
-//     fragmentShader: fs,
-//     vertexShader: vs
-// });
-
-let multMat = new THREE.ShaderMaterial({
-    uniforms: uniforms,
-    vertexShader: vs,
-    fragmentShader: fs,
-    blending: THREE.MultiplyBlending,
-    // blendEquation: THREE.AddEquation,
-    // blendSrc: THREE.OneFactor,
-    // blendDst: THREE.OneMinusSrcAlphaFactor,
-    depthTest: true,
-    depthWrite: true,
-    transparent: true
-});
-
-
 window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
@@ -166,26 +114,25 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
             
             if (child.name == "Bounce_Light_Area"){
-                // child.material = new THREE.MeshBasicMaterial({
-                //     map: eloader.load('./assets/textures/vaseDiffuse.exr'),
-                //     depthTest: true,
-                //     depthWrite: true,
-                //     transparent: true,
-                //     //blending: THREE.MultiplyBlending,
-                // });
+                child.material = new THREE.MeshBasicMaterial({
+                    map: eloader.load('./assets/textures/vaseDiffuse.exr'),
+                    depthTest: true,
+                    depthWrite: true,
+                    transparent: true,
+                    blending: THREE.AdditiveBlending,
+                });
                 
                 console.log("Vase Diffuse", child);
             }
             
             if (child.name == "Bounce_Light"){
-                // child.material = new THREE.MeshBasicMaterial({
-                //     map: eloader.load('./assets/textures/lampDiffuse.exr'),
-                //     depthTest: true,
-                //     depthWrite: true,
-                //     transparent: true,
-                //     //blending: THREE.MultiplyBlending,
-                // });
-                child.material = multMat;
+                child.material = new THREE.MeshBasicMaterial({
+                    map: eloader.load('./assets/textures/lampDiffuse.exr'),
+                    depthTest: true,
+                    depthWrite: true,
+                    transparent: true,
+                    blending: THREE.MultiplyBlending,
+                });
                 
                 console.log("Lamp Diffuse", child);
             }
