@@ -122,8 +122,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     roughnessMap: child.material.roughnessMap,
                     transmission: 1,
                     thickness: 0.5,
-                  });
-                
+                });
+                console.log("Vase", child)
             }
 
 
@@ -144,7 +144,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 
                 child.material = videoMaterial;
 
-                console.log("TV ", child);
+                console.log("TV", child);
             }
             
 
@@ -156,8 +156,9 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     depthWrite: true,
                     transparent: true,
                     blending: THREE.MultiplyBlending,
-                });                
+                });
                 
+                console.log("Vase Diffuse", child);
             }
             
             if (child.name == "Bounce_Light"){
@@ -168,7 +169,10 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     transparent: true,
                     blending: THREE.MultiplyBlending,
                 });
+                
+                console.log("Lamp Diffuse", child);
             }
+
 
         }
     });
