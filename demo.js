@@ -11,6 +11,7 @@ import { EXRLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/lo
 // Three.js stuff
 const loader = new GLTFLoader();
 const eloader = new EXRLoader();
+const tloader = new TextureLoader();
 
 let scene = new THREE.Scene();
 let core = new THREE.Mesh();
@@ -35,22 +36,16 @@ let aspectRatio = 16/9;
 
 
 renderer.setClearColor("#000");
-
 renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
 renderer.setPixelRatio( window.devicePixelRatio );
-
-renderer.shadowMap.enabled = false; // Don't need any realtime shadows. Everything is baked :)
-//renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-// renderer.toneMapping = THREE.ReinhardToneMapping
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
 renderer.toneMappingExposure = 3;
 
 
+// LIGHT ////////////////
 
-// // LIGHT ////////////////
-
-// const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
-// scene.add( light );
+const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
+scene.add( light );
 
 
 new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) {
@@ -60,35 +55,57 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
 
 });
 
-// let uniforms = {
-//     colorB: {type: 'vec3', value: new THREE.Color(0xACB6E5)},
-//     colorA: {type: 'vec3', value: new THREE.Color(0x74ebd5)}
-// }
+const vs = `
+        uniform float pointMultiplier;
 
-// let multMat =  new THREE.ShaderMaterial({
-//     uniforms: uniforms,
-//     fragmentShader: `
-//         uniform vec3 colorA; 
-//         uniform vec3 colorB; 
-//         varying vec3 vUv;
+        attribute float size;
+        attribute float angle;
+        attribute float blend;
+        attribute vec4 colour;
 
-//         void main() {
-//             gl_FragColor = vec4(mix(colorA, colorB, vUv.x), 1.0);
-//         }
-//     `,
-//     vertexShader: `
-//         varying vec3 vUv; 
+        varying vec4 vCol;
+        varying vec2 vAngle;
+        varying float vBlend;
 
-//         void main() {
-//             vUv = position; 
+        void main() {
+            vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+            gl_Position = projectionMatrix * modelViewPosition;
 
-//             vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-//             gl_Position = projectionMatrix * modelViewPosition; 
-//         }
-//     `
-// })
+            vAngle = vec2(cos(angle), sin(angle));
+            vCol = colour;
+            vBlend = blend;
+        }
+    `
 
+const fs = `
+        uniform sampler2D tex;
 
+        varying vec4 vCol;
+        varying vec2 vAngle;
+        varying float vBlend;
+
+        void main() {
+            vec2 coords = (gl_PointCOord - .5)* mat2(vAngle.x, vAngle.y, -vAngle.y, .Angle.x) + .5;
+            //gl_FragColor.xyz *= texture2D(tex, coords).xyz;
+            gl_FragColor.xyz *= 2.;
+        }
+    `
+
+const uniforms = {
+    diffuseTexture: {
+        value: tloader.load('./assets/textures/walnut.jpg')
+        // eloader.load('./assets/textures/vaseDiffuse.exr')
+    },
+    pointMultiplier: {
+        value: window.innerHeight / (2.0 * Math.tan(0.5 * 60.0 * Math.PI / 180.0))
+    }
+};
+
+let multMat =  new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    fragmentShader: fs,
+    vertexShader: vs
+})
 
 window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
@@ -137,7 +154,6 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     emissive: 0xffffff,
                     emissiveMap: videoTexture,
                     emissiveIntensity: 1.2,
-                    side: THREE.FrontSide,
                     toneMapped: true,
                     metalness: 0,
                     roughness: 1,
@@ -162,13 +178,14 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
             
             if (child.name == "Bounce_Light"){
-                child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/lampDiffuse.exr'),
-                    depthTest: true,
-                    depthWrite: true,
-                    transparent: true,
-                    //blending: THREE.MultiplyBlending,
-                });
+                // child.material = new THREE.MeshBasicMaterial({
+                //     map: eloader.load('./assets/textures/lampDiffuse.exr'),
+                //     depthTest: true,
+                //     depthWrite: true,
+                //     transparent: true,
+                //     //blending: THREE.MultiplyBlending,
+                // });
+                child.material = multMat;
                 
                 console.log("Lamp Diffuse", child);
             }
@@ -215,15 +232,12 @@ function render(t) {
     }
 }
 
+addEventListener("resize", setWindow);
 function setWindow(){
     renderer.setSize( window.innerWidth, window.innerWidth / aspectRatio );
     camera.updateProjectionMatrix();
     console.log("rezised :P");
 }
-
-addEventListener("resize", setWindow);
-
-
 function setAnimTime(t){
     if ( mixer ){
         mixer.update( anim.duration + (t - animAction.time));
