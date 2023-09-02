@@ -56,40 +56,40 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
 });
 
 const vs = `
-        uniform float pointMultiplier;
+uniform float pointMultiplier;
 
-        attribute float size;
-        attribute float angle;
-        attribute float blend;
-        attribute vec4 colour;
+attribute float size;
+attribute float angle;
+attribute float blend;
+attribute vec4 colour;
 
-        varying vec4 vCol;
-        varying vec2 vAngle;
-        varying float vBlend;
+varying vec4 vCol;
+varying vec2 vAngle;
+varying float vBlend;
 
-        void main() {
-            vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-            gl_Position = projectionMatrix * modelViewPosition;
+void main() {
+    vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * modelViewPosition;
 
-            vAngle = vec2(cos(angle), sin(angle));
-            vCol = colour;
-            vBlend = blend;
-        }
-    `
+    vAngle = vec2(cos(angle), sin(angle));
+    vCol = colour;
+    vBlend = blend;
+}
+`
 
 const fs = `
-        uniform sampler2D tex;
+uniform sampler2D tex;
 
-        varying vec4 vCol;
-        varying vec2 vAngle;
-        varying float vBlend;
+varying vec4 vCol;
+varying vec2 vAngle;
+varying float vBlend;
 
-        void main() {
-            vec2 coords = (gl_PointCoord - .5)* mat2(vAngle.x, vAngle.y, -vAngle.y, .Angle.x) + .5;
-            //gl_FragColor.xyz *= texture2D(tex, coords).xyz;
-            gl_FragColor.xyz *= 2.;
-        }
-    `
+void main() {
+    vec2 coords = (gl_PointCoord - .5)* mat2(vAngle.x, vAngle.y, -vAngle.y, Angle.x) + .5;
+    //gl_FragColor.xyz *= texture2D(tex, coords).xyz;
+    gl_FragColor.xyz *= 2.;
+}
+`
 
 const uniforms = {
     diffuseTexture: {
