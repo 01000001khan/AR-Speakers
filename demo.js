@@ -11,7 +11,7 @@ import { EXRLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/lo
 // Three.js stuff
 const loader = new GLTFLoader();
 const eloader = new EXRLoader();
-const tloader = new TextureLoader();
+const tloader = new THREE.TextureLoader();
 
 let scene = new THREE.Scene();
 let core = new THREE.Mesh();
