@@ -53,36 +53,18 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
 });
 
 const vs = `
-uniform float pointMultiplier;
-
-attribute float size;
-attribute float angle;
-attribute float blend;
-attribute vec4 colour;
-
-varying vec4 vCol;
-varying vec2 vAngle;
-varying float vBlend;
 varying vec2 vUv;
 
 void main() {
     vUv = uv;
     vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * modelViewPosition;
-
-    vAngle = vec2(cos(angle), sin(angle));
-    vCol = colour;
-    vBlend = blend;
 }
 `
 
 const fs = `
 uniform sampler2D tex;
-
 varying vec2 vUv;
-varying vec4 vCol;
-varying vec2 vAngle;
-varying float vBlend;
 
 void main() {
     gl_FragColor = texture2D(tex, vUv);
@@ -94,9 +76,6 @@ const uniforms = {
     diffuseTexture: {
         value: tloader.load('./assets/textures/walnut.jpg')
         // eloader.load('./assets/textures/vaseDiffuse.exr')
-    },
-    pointMultiplier: {
-        value: window.innerHeight / (2.0 * Math.tan(0.5 * 60.0 * Math.PI / 180.0))
     }
 };
 
