@@ -70,7 +70,8 @@ varying vec2 vUv;
 
 void main() {
     gl_FragColor = texture2D(tex, gl_FragCoord.xy/res);
-    gl_FragColor.xyz *= texture2D(map, vUv);
+    gl_FragColor *= 5.;
+    //gl_FragColor.xyz *= texture2D(map, vUv);
 }
 `
 
@@ -107,7 +108,6 @@ let multMat = new THREE.ShaderMaterial({
 window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
-    
     speaker = gltf.scene;
     mixer = new THREE.AnimationMixer(speaker);
 
@@ -153,7 +153,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     emissive: 0xffffff,
                     emissiveMap: tloader.load('./assets/textures/walnut.jpg'),
                     side: THREE.FrontSide,
-                    // emissiveIntensity: 1.2,
+                    emissiveIntensity: 1.2,
                     toneMapped: true,
                     // metalness: 0,
                     // roughness: 0,
@@ -239,6 +239,7 @@ function setWindow(){
     camera.updateProjectionMatrix();
     console.log("rezised :P");
 }
+
 function setAnimTime(t){
     if ( mixer ){
         mixer.update( anim.duration + (t - animAction.time));
