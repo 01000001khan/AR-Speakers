@@ -69,9 +69,8 @@ uniform vec2 res;
 varying vec2 vUv;
 
 void main() {
-    gl_FragColor = texture2D(tex, gl_FragCoord.xy/res);
-    gl_FragColor *= 5.;
-    //gl_FragColor.xyz *= texture2D(map, vUv);
+    gl_FragColor.xyz *= texture2D(map, vUv);
+    gl_FragColor.a = 1.;
 }
 `
 
@@ -95,10 +94,10 @@ let multMat = new THREE.ShaderMaterial({
     uniforms: uniforms,
     vertexShader: vs,
     fragmentShader: fs,
-    blending: THREE.CustomBlending,
-    blendEquation: THREE.AddEquation,
-    blendSrc: THREE.OneFactor,
-    blendDst: THREE.OneMinusSrcAlphaFactor,
+    blending: THREE.MultiplyBlending,
+    // blendEquation: THREE.AddEquation,
+    // blendSrc: THREE.OneFactor,
+    // blendDst: THREE.OneMinusSrcAlphaFactor,
     depthTest: true,
     depthWrite: true,
     transparent: true
