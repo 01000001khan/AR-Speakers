@@ -85,7 +85,7 @@ const fs = `
         varying float vBlend;
 
         void main() {
-            vec2 coords = (gl_PointCOord - .5)* mat2(vAngle.x, vAngle.y, -vAngle.y, .Angle.x) + .5;
+            vec2 coords = (gl_PointCoord - .5)* mat2(vAngle.x, vAngle.y, -vAngle.y, .Angle.x) + .5;
             //gl_FragColor.xyz *= texture2D(tex, coords).xyz;
             gl_FragColor.xyz *= 2.;
         }
