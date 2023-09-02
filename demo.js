@@ -10,7 +10,7 @@ import { EXRLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/lo
 
 // Three.js stuff
 const loader = new GLTFLoader();
-const exrloader = new THREE.EXRLoader();
+const eloader = new THREE.EXRLoader();
 
 let scene = new THREE.Scene();
 let core = new THREE.Mesh();
@@ -151,7 +151,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: exrloader.load('./assets/textures/vaseDiffuse.exr'),
+                    map: eloader.load('./assets/textures/vaseDiffuse.exr'),
                     depthTest: true,
                     depthWrite: true,
                     transparent: true,
@@ -163,7 +163,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: exrloader.load('./assets/textures/lampDiffuse.exr'),
+                    map: eloader.load('./assets/textures/lampDiffuse.exr'),
                     depthTest: true,
                     depthWrite: true,
                     transparent: true,
