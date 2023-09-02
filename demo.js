@@ -115,6 +115,12 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             
             if (child.name == "vase"){ // And vase on top, though zwrite should work safely anyways given vase is full alpha
                 child.renderOrder = 120;
+                child.material = new THREE.MeshPhysicalMaterial({
+                    roughnessMap: child.material.roughnessMap,
+                    transmission: 1,
+                    thickness: 0.5,
+                  });
+                
             }
 
 
