@@ -5,10 +5,13 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 import { RGBELoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/RGBELoader.js';
+import { EXRLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/EXRLoader.js';
+
 
 // Three.js stuff
 const loader = new GLTFLoader();
-const imgloader = new THREE.TextureLoader();
+const exrloader = new THREE.EXRLoader();
+
 let scene = new THREE.Scene();
 let core = new THREE.Mesh();
 let renderer = new THREE.WebGLRenderer({antialias:true});
@@ -148,7 +151,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: imgloader.load('./assets/textures/vaseDiffuse.exr'),
+                    map: exrloader.load('./assets/textures/vaseDiffuse.exr'),
                     depthTest: true,
                     depthWrite: true,
                     transparent: true,
@@ -159,7 +162,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: imgloader.load('./assets/textures/lampDiffuse.exr'),
+                    map: exrloader.load('./assets/textures/lampDiffuse.exr'),
                     depthTest: true,
                     depthWrite: true,
                     transparent: true,
