@@ -20,7 +20,7 @@ scene.add(core);
 
 
 
-// My non-critical variables
+// My variables
 const slider = document.getElementById("slider");
 let lastSliderPos = -1;
 let dt = 0;
@@ -42,17 +42,14 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use
 renderer.toneMappingExposure = 3;
 
 
-// LIGHT ////////////////
 
+// LIGHT ////////////////
 const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
 scene.add( light );
 
-
 new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) {
-
     texture.mapping = THREE.EquirectangularReflectionMapping;
     scene.environment = texture;
-
 });
 
 const vs = `
@@ -66,8 +63,10 @@ attribute vec4 colour;
 varying vec4 vCol;
 varying vec2 vAngle;
 varying float vBlend;
+varying vec2 vUv;
 
 void main() {
+    vUv = uv;
     vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * modelViewPosition;
 
@@ -80,13 +79,13 @@ void main() {
 const fs = `
 uniform sampler2D tex;
 
+varying vec2 vUv;
 varying vec4 vCol;
 varying vec2 vAngle;
 varying float vBlend;
 
 void main() {
-    vec2 coords = (gl_PointCoord - .5)* mat2(vAngle.x, vAngle.y, -vAngle.y, vAngle.x) + .5;
-    gl_FragColor = texture2D(tex, coords);
+    gl_FragColor = texture2D(tex, vUv);
     gl_FragColor.xyz *= 2.;
 }
 `
@@ -163,30 +162,34 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 video.onloadeddata = () => { video.play(); };
 
                 const videoTexture = new THREE.VideoTexture(video);
+                videoTexture.encoding = THREE.sRGBEncoding;
+                videoTexture.needsUpdate = true;
                 const videoMaterial = new THREE.MeshStandardMaterial({
                     color: 0x0,
                     emissive: 0xffffff,
-                    emissiveMap: videoTexture,
-                    emissiveIntensity: 1.2,
+                    emissiveMap: tloader.load('./assets/textures/walnut.jpg'),
+                    side: THREE.FrontSide,
+                    // emissiveIntensity: 1.2,
                     toneMapped: true,
-                    metalness: 0,
-                    roughness: 1,
+                    // metalness: 0,
+                    // roughness: 0,
                     envMap: child.material.envMap
                 });
                 videoMaterial.needsUpdate = true;
                 
                 child.material = videoMaterial;
-                console.log("TV", child);
+                console.log("Screen", child);
+                console.log("Texture", tloader.load('./assets/textures/walnut.jpg'));
             }
             
             if (child.name == "Bounce_Light_Area"){
-                child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/vaseDiffuse.exr'),
-                    depthTest: true,
-                    depthWrite: true,
-                    transparent: true,
-                    //blending: THREE.MultiplyBlending,
-                });
+                // child.material = new THREE.MeshBasicMaterial({
+                //     map: eloader.load('./assets/textures/vaseDiffuse.exr'),
+                //     depthTest: true,
+                //     depthWrite: true,
+                //     transparent: true,
+                //     //blending: THREE.MultiplyBlending,
+                // });
                 
                 console.log("Vase Diffuse", child);
             }
