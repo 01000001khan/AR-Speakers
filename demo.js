@@ -101,11 +101,25 @@ const uniforms = {
     }
 };
 
-let multMat =  new THREE.ShaderMaterial({
+// let multMat =  new THREE.ShaderMaterial({
+//     uniforms: uniforms,
+//     fragmentShader: fs,
+//     vertexShader: vs
+// });
+
+let multMat = new THREE.ShaderMaterial({
     uniforms: uniforms,
+    vertexShader: vs,
     fragmentShader: fs,
-    vertexShader: vs
-})
+    blending: THREE.CustomBlending,
+    blendEquation: THREE.AddEquation,
+    blendSrc: THREE.OneFactor,
+    blendDst: THREE.OneMinusSrcAlphaFactor,
+    depthTest: true,
+    depthWrite: true,
+    transparent: true
+});
+
 
 window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
