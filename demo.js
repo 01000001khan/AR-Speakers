@@ -201,6 +201,8 @@ addEventListener("resize", setWindow);
 
 const slider = document.getElementById("slider");
 slider.addEventListener("input", (e)=>{
+    mixer.clipAction(anim).play();
     mixer.setTime(slider.value);
+    mixer.clipAction(anim).stop();
     console.log("Animation position:", slider.value);
 });
