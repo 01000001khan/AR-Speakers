@@ -121,7 +121,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 child.material = new THREE.MeshPhysicalMaterial({
                     roughnessMap: child.material.roughnessMap,
                     transmission: 1,
-                    thickness: 0.5,
+                    thickness: 1,
                 });
                 console.log("Vase", child)
             }
