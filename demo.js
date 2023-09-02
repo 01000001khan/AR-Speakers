@@ -33,11 +33,6 @@ let animAction = null;
 let aspectRatio = 16/9;
 
 
-const video = document.getElementById("video");
-video.onloadeddata = ()=>{
-    video.play();
-};
-
 
 renderer.setClearColor("#000");
 
@@ -129,12 +124,15 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
             if (child.name == "screen"){ // TV Screen
 
-                //Create your video texture:
+                const video = document.getElementById("video");
+                video.onloadeddata = () => { video.play(); };
+
                 const videoTexture = new THREE.VideoTexture(video);
-                videoTexture.needsUpdate = true;
                 const videoMaterial = new THREE.MeshStandardMaterial({
                     color: 0x0,
+                    emissive: 0xffffff,
                     emissiveMap: videoTexture,
+                    emissiveIntensity: 1.2,
                     side: THREE.FrontSide,
                     toneMapped: true,
                     metalness: 0,
@@ -155,7 +153,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     depthTest: true,
                     depthWrite: true,
                     transparent: true,
-                    blending: THREE.MultiplyBlending,
+                    //blending: THREE.MultiplyBlending,
                 });
                 
                 console.log("Vase Diffuse", child);
@@ -167,7 +165,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     depthTest: true,
                     depthWrite: true,
                     transparent: true,
-                    blending: THREE.MultiplyBlending,
+                    //blending: THREE.MultiplyBlending,
                 });
                 
                 console.log("Lamp Diffuse", child);
@@ -179,7 +177,6 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
     
     camera = gltf.cameras[0];
     camera.aspect = aspectRatio;
-    
     
     scene.add(speaker);
     setWindow();
@@ -194,17 +191,8 @@ function render(t) {
     requestAnimationFrame( render );    // Request the next frame before we've actually rendered
                                         // this one because js is weird and everything runs async.
 
-    dt = t*.001-time;
-    time = t*.001; // Seconds instead of ms
-    
-    let newframe = animAction.time != slider.value;
-    
-    // if ( mixer ){
-    //     // mixer.update( dt ); // I'm going to hijack this to set the animation position :P
-    //     mixer.update( anim.duration + (slider.value - lastSliderPos));
-    //     lastSliderPos = slider.value;
-    // }
-    setAnimTime(slider.value);
+    // dt = t*.001-time;
+    // time = t*.001; // Seconds instead of ms
     
     // Consider adding reflection probe (cube camera in THREE) to the lamp, especially if reducing normal intensity or somethin'
     
@@ -212,8 +200,11 @@ function render(t) {
     // https://git.ucsc.edu/jlao3/CMPM163Labs/-/blob/fc061ee35444d648b200a9a5fc83c32407a7c590/three.js-master/examples/webgl_postprocessing_taa.html
     // If !newframe, accumulate, otherwise render new frame
     
+
+    let newframe = animAction.time != slider.value;
     if (camera){ // serves to make sure camera exists for render call, makes sure model is loaded and stuff initialized for DOM stuff
         if (newframe){
+            setAnimTime(slider.value);
             renderer.render(scene, camera); // The actual render call
         }
     
@@ -231,21 +222,6 @@ function setWindow(){
 }
 
 addEventListener("resize", setWindow);
-
-
-// anim = gltf.animations[0];
-// anim.optimize();
-// animAction = mixer.clipAction(anim);
-// animAction.play();
-
-
-// function setAnimTime(a, t){
-//     aAction = mixer.clipAction(a);
-//     if ( mixer ){
-//         mixer.update( a.duration + (t - aAction.time));
-//     }
-// }
-
 
 
 function setAnimTime(t){
