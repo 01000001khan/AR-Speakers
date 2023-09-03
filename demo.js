@@ -31,14 +31,14 @@ let speaker = null;
 let anim = null;
 let animAction = null;
 let aspectRatio = 16/9;
-
+let diffuseLightIntensity = 5;
 
 
 renderer.setClearColor("#000");
 renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
-renderer.toneMappingExposure = 3;
+renderer.toneMappingExposure = diffuseLightIntensity+1;
 
 window.renderer = renderer;
 
@@ -68,7 +68,8 @@ uniform float light;
 varying vec2 vUv;
 
 void main() {
-    gl_FragColor = texture2D(tex, vUv);//*light + 1.;
+    uUv.y = uUv.y * -1. + 1.; // Seems backwards
+    gl_FragColor = (texture2D(tex, vUv)*light + 1.) / (light + 1.);
 }
 `
 
@@ -77,7 +78,7 @@ const lampu = {
         value: tloader.load('./assets/textures/lampDiffuse.png')
     },
     light: {
-        value: 3 // Brightness of the light
+        value: diffuseLightIntensity // Brightness of the light
     }
 };
 
@@ -86,7 +87,7 @@ const vaseu = {
         value: tloader.load('./assets/textures/vaseDiffuse.png')
     },
     light: {
-        value: 3 // Brightness of the light
+        value: diffuseLightIntensity // Brightness of the light
     }
 };
 
@@ -94,7 +95,7 @@ let lampLight = new THREE.ShaderMaterial({
     uniforms: lampu,
     vertexShader: vs,
     fragmentShader: fs,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.MultiplyBlending,
     transparent: true
 });
 
@@ -102,7 +103,7 @@ let vaseLight = new THREE.ShaderMaterial({
     uniforms: vaseu,
     vertexShader: vs,
     fragmentShader: fs,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.MultiplyBlending,
     transparent: true
 });
 
@@ -122,6 +123,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
     speaker.traverse( (child) => {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
+            child.material.color.multiplyScalar(.2);
             meshes.push(child);
             
 
@@ -135,6 +137,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 // And vase on top, though zwrite should work safely anyways given vase is full alpha
                 child.renderOrder = 120;
                 child.material = new THREE.MeshPhysicalMaterial({
+                    color: child.material.color,
                     roughnessMap: child.material.roughnessMap,
                     transmission: 1,
                     thickness: 1,
