@@ -67,10 +67,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
             meshes.push(child);
+            
 
-            let walnut = tloader.load('./assets/textures/walnut.jpg', ( texture ) => {
-                texture.colorSpace = THREE.SRGBColorSpace;
-            });
             
             if (child.name.includes("Plant")){
                 // Sort all the foliage after the background
@@ -100,7 +98,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 const videoMaterial = new THREE.MeshStandardMaterial({
                     color: 0x0,
                     emissive: 0xffffff,
-                    emissiveMap: walnut,
+                    emissiveMap: tloader.load('./assets/textures/walnut.jpg', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
                     side: THREE.FrontSide,
                     emissiveIntensity: 1.2,
                     toneMapped: true,
@@ -109,15 +107,15 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     envMap: child.material.envMap
                 });
                 videoMaterial.needsUpdate = true;
-                
                 child.material = videoMaterial;
+                
                 console.log("Screen", child);
-                console.log("Texture", tloader.load('./assets/textures/walnut.jpg'));
+                console.log("Texture", child.material.map);
             }
             
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: walnut
+                    map: tloader.load('./assets/textures/walnut.jpg', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
                     // eloader.load('./assets/textures/vaseDiffuse.exr'),
                 });
                 child.material.blending = THREE.MultiplyBlending;
@@ -128,7 +126,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: walnut
+                    map: tloader.load('./assets/textures/walnut.jpg', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
                     // eloader.load('./assets/textures/lampDiffuse.exr'),
                 });
                 child.material.blending = THREE.MultiplyBlending;
