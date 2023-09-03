@@ -5,12 +5,11 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
 import { RGBELoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/RGBELoader.js';
-import { EXRLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/EXRLoader.js';
+
 
 
 // Three.js stuff
 const loader = new GLTFLoader();
-const eloader = new EXRLoader();
 const tloader = new THREE.TextureLoader();
 
 let scene = new THREE.Scene();
@@ -68,7 +67,7 @@ uniform sampler2D tex;
 varying vec2 vUv;
 
 void main() {
-    gl_FragColor = texture2D(tex, vUv)*4;
+    gl_FragColor = texture2D(tex, vUv)*4.;
     gl_FragColor.xyz += 1.;
 }
 `
@@ -154,8 +153,6 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
                     map: tloader.load('./assets/textures/lampDiffuse.png'),
-                    // eloader.load('./assets/textures/lampDiffuse.exr'),
-                    // tloader.load('./assets/textures/walnut.jpg'),
                 });
                 child.material.blending = THREE.MultiplyBlending;
                 child.material.transparent = true;
@@ -168,8 +165,6 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
                     map: tloader.load('./assets/textures/vaseDiffuse.png'),
-                    // eloader.load('./assets/textures/vaseDiffuse.exr'),
-                    // tloader.load('./assets/textures/walnut.jpg'),
                 });
                 child.material.blending = THREE.MultiplyBlending;
                 child.material.transparent = true;
