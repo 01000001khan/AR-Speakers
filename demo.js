@@ -115,7 +115,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: tloader.load('./assets/textures/walnut.jpg'),
+                    map: eloader.load('./assets/textures/lampDiffuse.exr'),
                     // eloader.load('./assets/textures/lampDiffuse.exr'),
                     // tloader.load('./assets/textures/walnut.jpg'),
                 });
@@ -127,7 +127,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: tloader.load('./assets/textures/walnut.jpg'),
+                    map: eloader.load('./assets/textures/vaseDiffuse.exr'),
                     // eloader.load('./assets/textures/vaseDiffuse.exr'),
                     // tloader.load('./assets/textures/walnut.jpg'),
                 });
