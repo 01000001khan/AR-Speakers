@@ -68,7 +68,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             child.material.envMap = scene.environment;
             meshes.push(child);
 
-            walnut = tloader.load('./assets/textures/walnut.jpg', ( texture ) => {
+            let walnut = tloader.load('./assets/textures/walnut.jpg', ( texture ) => {
                 texture.colorSpace = THREE.SRGBColorSpace;
             });
             
