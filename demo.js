@@ -115,7 +115,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/vaseDiffuse.exr'),
+                    map: tloader.load('./assets/textures/walnut.jpg'),
+                    // eloader.load('./assets/textures/vaseDiffuse.exr'),
                 });
                 child.material.blending = THREE.MultiplyBlending;
                 child.material.transparent = true;
