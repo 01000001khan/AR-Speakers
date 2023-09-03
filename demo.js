@@ -68,11 +68,11 @@ uniform float light;
 varying vec2 vUv;
 
 void main() {
-    gl_FragColor = texture2D(tex, vUv)*light + 1.;
+    gl_FragColor = texture2D(tex, vUv);//*light + 1.;
 }
 `
 
-const uniforms = {
+const lampu = {
     tex: {
         value: tloader.load('./assets/textures/lampDiffuse.png')
     },
@@ -81,11 +81,28 @@ const uniforms = {
     }
 };
 
-let multMat = new THREE.ShaderMaterial({
-    uniforms: uniforms,
+const vaseu = {
+    tex: {
+        value: tloader.load('./assets/textures/vaseDiffuse.png')
+    },
+    light: {
+        value: 3 // Brightness of the light
+    }
+};
+
+let lampLight = new THREE.ShaderMaterial({
+    uniforms: lampu,
     vertexShader: vs,
     fragmentShader: fs,
-    blending: THREE.MultiplyBlending,
+    blending: THREE.AdditiveBlending,
+    transparent: true
+});
+
+let vaseLight = new THREE.ShaderMaterial({
+    uniforms: vaseu,
+    vertexShader: vs,
+    fragmentShader: fs,
+    blending: THREE.AdditiveBlending,
     transparent: true
 });
 
@@ -139,10 +156,10 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     emissive: 0xffffff,
                     emissiveMap: tloader.load('./assets/textures/walnut.jpg'),
                     side: THREE.FrontSide,
-                    emissiveIntensity: 1.2,
+                    // emissiveIntensity: 1.0,
                     toneMapped: true,
                     // metalness: 0,
-                    // roughness: 0,
+                    roughness: 0,
                     envMap: child.material.envMap
                 });
                 videoMaterial.needsUpdate = true;
@@ -153,25 +170,12 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
 
             if (child.name == "Bounce_Light"){
-                // child.material = new THREE.MeshBasicMaterial({
-                //     map: tloader.load('./assets/textures/lampDiffuse.png'),
-                // });
-                // child.material.blending = THREE.MultiplyBlending;
-                // child.material.transparent = true;
-
-                child.material = multMat
-                
+                child.material = lampLight;
                 console.log("Lamp Diffuse", child);
             }
             
             if (child.name == "Bounce_Light_Area"){
-                // child.material = new THREE.MeshBasicMaterial({
-                //     map: tloader.load('./assets/textures/vaseDiffuse.png'),
-                // });
-                // child.material.blending = THREE.MultiplyBlending;
-                // child.material.transparent = true;
-                child.material.visible = false;
-                
+                child.material = vaseLight;
                 console.log("Vase Diffuse", child);
             }
             
