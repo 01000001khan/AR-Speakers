@@ -68,8 +68,9 @@ uniform float light;
 varying vec2 vUv;
 
 void main() {
-    vUv.y = vUv.y * -1. + 1.; // Seems backwards
-    gl_FragColor = (texture2D(tex, vUv)*light + 1.) / (light + 1.);
+    vec2 rUv = vUv;
+    rUv.y = rUv.y * -1. + 1.; // Seems backwards
+    gl_FragColor = (texture2D(tex, rUv)*light + 1.) / (light + 1.);
 }
 `
 
