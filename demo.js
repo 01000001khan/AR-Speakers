@@ -53,6 +53,43 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
     scene.environment = texture;
 });
 
+const vs = `
+varying vec2 vUv;
+
+void main() {
+    vUv = uv;
+    vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * modelViewPosition;
+}
+`
+
+const fs = `
+uniform sampler2D tex;
+varying vec2 vUv;
+
+void main() {
+    gl_FragColor = texture2D(tex, vUv)*4;
+    gl_FragColor.xyz += 1.;
+}
+`
+
+const uniforms = {
+    tex: {
+        value: tloader.load('./assets/textures/lampDiffuse.png')
+        // eloader.load('./assets/textures/vaseDiffuse.exr')
+    }
+};
+
+let multMat = new THREE.ShaderMaterial({
+    uniforms: uniforms,
+    vertexShader: vs,
+    fragmentShader: fs,
+    blending: THREE.MultiplyBlending,
+    transparent: true
+});
+
+
+
 window.meshes=[]
 loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
@@ -122,6 +159,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 });
                 child.material.blending = THREE.MultiplyBlending;
                 child.material.transparent = true;
+
+                child.material = multMat
                 
                 console.log("Lamp Diffuse", child);
             }
