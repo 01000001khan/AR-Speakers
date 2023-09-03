@@ -112,21 +112,11 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 console.log("Screen", child);
                 console.log("Texture", child.material.map);
             }
-            
-            if (child.name == "Bounce_Light_Area"){
-                child.material = new THREE.MeshBasicMaterial({
-                    map: tloader.load('./assets/textures/walnut.jpg'),
-                    // eloader.load('./assets/textures/vaseDiffuse.exr'),
-                });
-                child.material.blending = THREE.MultiplyBlending;
-                child.material.transparent = true;
-                
-                console.log("Vase Diffuse", child);
-            }
-            
+
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/lampDiffuse.exr', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
+                    map: tloader.load('./assets/textures/walnut.jpg', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
+                    // eloader.load('./assets/textures/lampDiffuse.exr', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
                     // tloader.load('./assets/textures/walnut.jpg', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
                 });
                 child.material.blending = THREE.MultiplyBlending;
@@ -134,6 +124,18 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 
                 console.log("Lamp Diffuse", child);
             }
+            
+            if (child.name == "Bounce_Light_Area"){
+                child.material = new THREE.MeshBasicMaterial({
+                    map: tloader.load('./assets/textures/walnut.jpg'),
+                    // eloader.load('./assets/textures/vaseDiffuse.exr', (t)=>{ t.colorSpace = THREE.SRGBColorSpace; }),
+                });
+                child.material.blending = THREE.MultiplyBlending;
+                child.material.transparent = true;
+                
+                console.log("Vase Diffuse", child);
+            }
+            
         }
     });
     
