@@ -41,6 +41,7 @@ renderer.setPixelRatio( window.devicePixelRatio );
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
 renderer.toneMappingExposure = 3;
 
+window.renderer = renderer;
 
 
 // LIGHT ////////////////
@@ -115,24 +116,24 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
             if (child.name == "Bounce_Light"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/lampDiffuse.exr'),
+                    map: tloader.load('./assets/textures/lampDiffuse.png'),
                     // eloader.load('./assets/textures/lampDiffuse.exr'),
                     // tloader.load('./assets/textures/walnut.jpg'),
                 });
                 child.material.blending = THREE.MultiplyBlending;
-                // child.material.transparent = true;
+                child.material.transparent = true;
                 
                 console.log("Lamp Diffuse", child);
             }
             
             if (child.name == "Bounce_Light_Area"){
                 child.material = new THREE.MeshBasicMaterial({
-                    map: eloader.load('./assets/textures/vaseDiffuse.exr'),
+                    map: tloader.load('./assets/textures/vaseDiffuse.png'),
                     // eloader.load('./assets/textures/vaseDiffuse.exr'),
                     // tloader.load('./assets/textures/walnut.jpg'),
                 });
-                // child.material.blending = THREE.MultiplyBlending;
-                // child.material.transparent = true;
+                child.material.blending = THREE.MultiplyBlending;
+                child.material.transparent = true;
                 
                 console.log("Vase Diffuse", child);
             }
