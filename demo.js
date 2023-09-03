@@ -17,8 +17,6 @@ let core = new THREE.Mesh();
 let renderer = new THREE.WebGLRenderer({antialias:true});
 scene.add(core);
 
-
-
 // My variables
 const slider = document.getElementById("slider");
 let lastSliderPos = -1;
@@ -52,61 +50,55 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
     scene.environment = texture;
 });
 
-const vs = `
-varying vec2 vUv;
+// const vs = `
+// varying vec2 vUv;
 
-void main() {
-    vUv = uv;
-    vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-    gl_Position = projectionMatrix * modelViewPosition;
-}
-`
+// void main() {
+//     vUv = uv;
+//     vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+//     gl_Position = projectionMatrix * modelViewPosition;
+// }
+// `
 
-const fs = `
-uniform sampler2D tex;
-uniform float light;
-varying vec2 vUv;
+// const fs = `
+// uniform sampler2D tex;
+// uniform float light;
+// varying vec2 vUv;
 
-void main() {
-    vec2 rUv = vUv;
-    rUv.y = rUv.y * -1. + 1.; // Seems backwards
-    gl_FragColor = (texture2D(tex, rUv)*light + 1.) / (light + 1.);
-}
-`
+// void main() {
+//     vec2 rUv = vUv;
+//     rUv.y = rUv.y * -1. + 1.; // Seems backwards
+//     gl_FragColor = (texture2D(tex, rUv)*light + 1.) / (light + 1.);
+// }
+// `
 
-const lampu = {
-    tex: {
-        value: tloader.load('./assets/textures/lampDiffuse.png')
-    },
-    light: {
-        value: diffuseLightIntensity // Brightness of the light
-    }
-};
+// const lampu = {
+//     tex: {
+//         value: tloader.load('./assets/textures/lampDiffuse.png')
+//     }
+// };
 
-const vaseu = {
-    tex: {
-        value: tloader.load('./assets/textures/vaseDiffuse.png')
-    },
-    light: {
-        value: diffuseLightIntensity // Brightness of the light
-    }
-};
+// const vaseu = {
+//     tex: {
+//         value: tloader.load('./assets/textures/vaseDiffuse.png')
+//     }
+// };
 
-let lampLight = new THREE.ShaderMaterial({
-    uniforms: lampu,
-    vertexShader: vs,
-    fragmentShader: fs,
-    blending: THREE.MultiplyBlending,
-    transparent: true
-});
+// let lampLight = new THREE.ShaderMaterial({
+//     uniforms: lampu,
+//     vertexShader: vs,
+//     fragmentShader: fs,
+//     blending: THREE.MultiplyBlending,
+//     transparent: true
+// });
 
-let vaseLight = new THREE.ShaderMaterial({
-    uniforms: vaseu,
-    vertexShader: vs,
-    fragmentShader: fs,
-    blending: THREE.MultiplyBlending,
-    transparent: true
-});
+// let vaseLight = new THREE.ShaderMaterial({
+//     uniforms: vaseu,
+//     vertexShader: vs,
+//     fragmentShader: fs,
+//     blending: THREE.MultiplyBlending,
+//     transparent: true
+// });
 
 
 
@@ -124,7 +116,8 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
     speaker.traverse( (child) => {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
-            child.material.color.multiplyScalar(.2);
+            // child.material.color.multiplyScalar(.2);
+            // child.material.emissive.multiplyScalar(.2);
             meshes.push(child);
             
 
@@ -174,12 +167,32 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
 
             if (child.name == "Bounce_Light"){
-                child.material = lampLight;
+                // child.material = lampLight;
+
+                child.material = new THREE.MeshBasicMaterial({
+                    map: tloader.load('./assets/textures/lampDiffuse.png'),
+                });
+                child.material.transparent = true;
+                child.material.blending = THREE.CustomBlending; 
+                child.material.blendEquation = THREE.AddEquation;
+                child.material.blendSrc = THREE.DstColorFactor;
+                child.material.blendDst = THREE.OneFactor;
+
                 console.log("Lamp Diffuse", child);
             }
             
             if (child.name == "Bounce_Light_Area"){
-                child.material = vaseLight;
+                // child.material = vaseLight;
+
+                child.material = new THREE.MeshBasicMaterial({
+                    map: tloader.load('./assets/textures/vaseDiffuse.png'),
+                });
+                child.material.transparent = true;
+                child.material.blending = THREE.CustomBlending; 
+                child.material.blendEquation = THREE.AddEquation;
+                child.material.blendSrc = THREE.DstColorFactor;
+                child.material.blendDst = THREE.OneFactor;
+
                 console.log("Vase Diffuse", child);
             }
             
