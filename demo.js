@@ -29,14 +29,12 @@ let speaker = null;
 let anim = null;
 let animAction = null;
 let aspectRatio = 16/9;
-let diffuseLightIntensity = 5;
-
 
 renderer.setClearColor("#000");
 renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
-renderer.toneMappingExposure = diffuseLightIntensity*3;
+renderer.toneMappingExposure = 5;
 
 window.renderer = renderer;
 
@@ -91,8 +89,8 @@ let lampLight = new THREE.ShaderMaterial({
     transparent:  true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.ZeroFactor,
-    blendDst:  THREE.SrcColorFactor,
+    blendSrc:  THREE.OneFactor,
+    blendDst:  THREE.ZeroFactor,
 });
 
 let vaseLight = new THREE.ShaderMaterial({
@@ -102,8 +100,8 @@ let vaseLight = new THREE.ShaderMaterial({
     transparent:  true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.ZeroFactor,
-    blendDst:  THREE.SrcColorFactor,
+    blendSrc:  THREE.DstColorFactor,
+    blendDst:  THREE.OneFactor,
 });
 
 
@@ -159,7 +157,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     emissive: 0xffffff,
                     emissiveMap: tloader.load('./assets/textures/walnut.jpg'),
                     side: THREE.FrontSide,
-                    emissiveIntensity: 1/diffuseLightIntensity,  
+                    emissiveIntensity: 1,  
                     toneMapped: true,
                     // metalness: 0,
                     roughness: 0,
