@@ -60,13 +60,12 @@ void main() {
 
 const fs = `
 uniform sampler2D tex;
-uniform float light;
 varying vec2 vUv;
 
 void main() {
     vec2 rUv = vUv;
     rUv.y = rUv.y * -1. + 1.; // Seems backwards
-    gl_FragColor = (texture2D(tex, rUv)*light + 1.) / (light + 1.);
+    gl_FragColor = texture2D(tex, rUv);
 }
 `
 
