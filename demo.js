@@ -88,8 +88,8 @@ let lampLight = new THREE.ShaderMaterial({
     transparent:  true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.OneFactor,
-    blendDst:  THREE.ZeroFactor,
+    blendSrc:  THREE.DstColorFactor,
+    blendDst:  THREE.OneFactor,
 });
 
 let vaseLight = new THREE.ShaderMaterial({
