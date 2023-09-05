@@ -96,7 +96,7 @@ let lampLight = new THREE.MeshBasicMaterial({
     transparent: true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.DstColorFactor,
+    blendSrc:  THREE.OneFactor,
     blendDst:  THREE.OneFactor,
 });
 
