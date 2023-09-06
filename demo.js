@@ -100,7 +100,7 @@ let vaseLight = new THREE.ShaderMaterial({
     transparent:  true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.DstColorFactor,
+    blendSrc:  THREE.DstColorFactor.multiplyScalar(5),
     blendDst:  THREE.OneFactor,
 });
 
