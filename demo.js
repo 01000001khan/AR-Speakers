@@ -30,7 +30,7 @@ let anim = null;
 let animAction = null;
 let aspectRatio = 16/9;
 
-renderer.setClearColor("#000");
+renderer.setClearColor("#FFF");
 renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
@@ -88,8 +88,8 @@ let lampLight = new THREE.ShaderMaterial({
     transparent:  true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.DstColorFactor,
-    blendDst:  THREE.OneFactor,
+    blendSrc:  THREE.OneFactor,
+    blendDst:  THREE.ZeroFactor,
 });
 
 let vaseLight = new THREE.ShaderMaterial({
@@ -99,8 +99,10 @@ let vaseLight = new THREE.ShaderMaterial({
     transparent:  true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.DstColorFactor,
-    blendDst:  THREE.OneFactor,
+    blendSrc: THREE.OneFactor,
+    blendDst: THREE.ZeroFactor,
+    // blendSrc:  THREE.DstColorFactor,
+    // blendDst:  THREE.OneFactor,
 });
 
 
@@ -121,6 +123,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             // child.material.color.multiplyScalar(.2);
             // child.material.emissive.multiplyScalar(.2);
             meshes.push(child);
+            child.renderOrder = 10;
             
 
 
@@ -169,6 +172,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
 
             if (child.name == "Bounce_Light"){
+                child.renderOrder = 1;
                 child.material = lampLight;
                 console.log("Lamp Diffuse", child);
                 child.clone();
@@ -176,10 +180,16 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
             
             if (child.name == "Bounce_Light_Area"){
+                child.renderOrder = 1;
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
                 child.clone();
                 child.clone();
+            }
+
+            if (child.name == "wall"){
+                child.renderOrder = 5;
+                child.material.blending = THREE.MultiplyBlending;
             }
             
         }
