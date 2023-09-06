@@ -92,7 +92,6 @@ let lampLight = new THREE.ShaderMaterial({
     blendDst:  THREE.OneFactor,
 });
 
-
 let vaseLight = new THREE.ShaderMaterial({
     uniforms: vaseu,
     vertexShader: vs,
@@ -100,7 +99,7 @@ let vaseLight = new THREE.ShaderMaterial({
     transparent:  true,
     blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.DstColorFactor.multiplyScalar(5),
+    blendSrc:  THREE.DstColorFactor,
     blendDst:  THREE.OneFactor,
 });
 
@@ -172,12 +171,15 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             if (child.name == "Bounce_Light"){
                 child.material = lampLight;
                 console.log("Lamp Diffuse", child);
+                child.clone();
+                child.clone();
             }
             
             if (child.name == "Bounce_Light_Area"){
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
-
+                child.clone();
+                child.clone();
             }
             
         }
