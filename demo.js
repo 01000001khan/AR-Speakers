@@ -91,13 +91,14 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
 //     blendSrc:  THREE.DstColorFactor,
 //     blendDst:  THREE.OneFactor,
 // });
+
 let lampLight = new THREE.MeshBasicMaterial({
     map: tloader.load('./assets/textures/lampDiffuse.png'),
     transparent: true,
-    blending:  THREE.CustomBlending, 
-    blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.OneFactor,
-    blendDst:  THREE.OneFactor,
+    blending:  THREE.AdditiveBlending, 
+    // blendEquation:  THREE.AddEquation,
+    // blendSrc:  THREE.OneFactor,
+    // blendDst:  THREE.OneFactor,
 });
 
 // let vaseLight = new THREE.ShaderMaterial({
