@@ -48,72 +48,61 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
     scene.environment = texture;
 });
 
-// const vs = `
-// varying vec2 vUv;
+const vs = `
+varying vec2 vUv;
 
-// void main() {
-//     vUv = uv;
-//     vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
-//     gl_Position = projectionMatrix * modelViewPosition;
-// }
-// `
+void main() {
+    vUv = uv;
+    vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * modelViewPosition;
+}
+`
 
-// const fs = `
-// uniform sampler2D tex;
-// varying vec2 vUv;
+const fs = `
+uniform sampler2D tex;
+varying vec2 vUv;
 
-// void main() {
-//     vec2 rUv = vUv;
-//     rUv.y = rUv.y * -1. + 1.; // Seems backwards
-//     gl_FragColor = texture2D(tex, rUv);
-// }
-// `
+void main() {
+    vec2 rUv = vUv;
+    rUv.y = rUv.y * -1. + 1.; // Seems backwards
+    gl_FragColor = texture2D(tex, rUv);
+}
+`
 
-// const lampu = {
-//     tex: {
-//         value: tloader.load('./assets/textures/lampDiffuse.png')
-//     }
-// };
+const lampu = {
+    tex: {
+        value: tloader.load('./assets/textures/lampDiffuse.png')
+    }
+};
 
-// const vaseu = {
-//     tex: {
-//         value: tloader.load('./assets/textures/vaseDiffuse.png')
-//     }
-// };
+const vaseu = {
+    tex: {
+        value: tloader.load('./assets/textures/vaseDiffuse.png')
+    }
+};
 
-// let lampLight = new THREE.ShaderMaterial({
-//     uniforms: lampu,
-//     vertexShader: vs,
-//     fragmentShader: fs,
-//     transparent:  true,
-//     blending:  THREE.CustomBlending, 
-//     blendEquation:  THREE.AddEquation,
-//     blendSrc:  THREE.DstColorFactor,
-//     blendDst:  THREE.OneFactor,
-// });
-
-let lampLight = new THREE.MeshBasicMaterial({
-    map: tloader.load('./assets/textures/lampDiffuse.png'),
-    transparent: true,
-    blending:  THREE.AdditiveBlending, 
-    // blendEquation:  THREE.AddEquation,
-    // blendSrc:  THREE.OneFactor,
-    // blendDst:  THREE.OneFactor,
+let lampLight = new THREE.ShaderMaterial({
+    uniforms: lampu,
+    vertexShader: vs,
+    fragmentShader: fs,
+    transparent:  true,
+    blending:  THREE.CustomBlending, 
+    blendEquation:  THREE.AddEquation,
+    blendSrc:  THREE.DstColorFactor,
+    blendDst:  THREE.OneFactor,
 });
 
-// let vaseLight = new THREE.ShaderMaterial({
-//     uniforms: vaseu,
-//     vertexShader: vs,
-//     fragmentShader: fs,
-//     transparent:  true,
-//     blending:  THREE.CustomBlending, 
-//     blendEquation:  THREE.AddEquation,
-//     blendSrc:  THREE.DstColorFactor,
-//     blendDst:  THREE.OneFactor,
-// });
 
-let vaseLight = lampLight;
-vaseLight.map = tloader.load('./assets/textures/vaseDiffuse.png');
+let vaseLight = new THREE.ShaderMaterial({
+    uniforms: vaseu,
+    vertexShader: vs,
+    fragmentShader: fs,
+    transparent:  true,
+    blending:  THREE.CustomBlending, 
+    blendEquation:  THREE.AddEquation,
+    blendSrc:  THREE.DstColorFactor,
+    blendDst:  THREE.OneFactor,
+});
 
 
 window.meshes=[]
