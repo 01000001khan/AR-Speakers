@@ -149,26 +149,23 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             if (child.name == "screen"){ // TV Screen
 
                 const video = document.getElementById("video");
-                video.onloadeddata = () => { 
-                    const videoTexture = new THREE.VideoTexture(video);
-                    videoTexture.encoding = THREE.sRGBEncoding;
-                    videoTexture.needsUpdate = true;
-                    const videoMaterial = new THREE.MeshStandardMaterial({
-                        color: 0x0,
-                        emissive: 0xffffff,
-                        emissiveMap: videoTexture,
-                        side: THREE.FrontSide,
-                        emissiveIntensity: 1,
-                        toneMapped: true,
-                        roughness: 0,
-                        envMap: child.material.envMap
-                    });
-                    videoMaterial.needsUpdate = true;
-                    child.material = videoMaterial;
-
-                    video.play();                 
-                };
-
+                video.onloadeddata = () => { video.play(); };
+                const videoTexture = new THREE.VideoTexture(video);
+                videoTexture.encoding = THREE.sRGBEncoding;
+                videoTexture.needsUpdate = true;
+                const videoMaterial = new THREE.MeshStandardMaterial({
+                    color: 0x0,
+                    emissive: 0xffffff,
+                    emissiveMap: videoTexture,
+                    side: THREE.FrontSide,
+                    emissiveIntensity: 1,
+                    toneMapped: true,
+                    roughness: 0,
+                    envMap: child.material.envMap
+                });
+                videoMaterial.needsUpdate = true;
+                child.material = videoMaterial;
+                
                 
                 console.log("Screen", child);
                 console.log("Texture", child.material.map);
