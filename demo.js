@@ -154,7 +154,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 const videoMaterial = new THREE.MeshStandardMaterial({
                     color: 0x0,
                     emissive: 0xffffff,
-                    emissiveMap: tloader.load('./assets/textures/walnut.jpg'),
+                    emissiveMap: videoTexture,
                     side: THREE.FrontSide,
                     emissiveIntensity: 1,  
                     toneMapped: true,
