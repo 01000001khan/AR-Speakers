@@ -39,13 +39,13 @@ renderer.setClearColor("#FFF");
 renderer.setSize( slider.offsetWidth, slider.offsetWidth / aspectRatio );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
-renderer.toneMappingExposure = 5;
+renderer.toneMappingExposure = 1;
 
 window.renderer = renderer;
 window.scene = scene;
 
 // LIGHT ////////////////
-const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
+const light = new THREE.HemisphereLight( "#fff", 0x080820, 5 );
 scene.add( light );
 
 new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) {
