@@ -36,7 +36,7 @@ let animAction = null;
 let aspectRatio = 16/9;
 
 renderer.setClearColor("#FFF");
-renderer.setSize( window.innerWidth, window.innerHeight * 0.5 );
+renderer.setSize( slider.offsetWidth, slider.offsetWidth / aspectRatio );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
 renderer.toneMappingExposure = 5;
@@ -233,7 +233,7 @@ function render(t) {
 
 addEventListener("resize", setWindow);
 function setWindow(){
-    renderer.setSize( window.innerWidth, window.innerWidth / aspectRatio );
+    renderer.setSize( slider.offsetWidth, slider.offsetWidth / aspectRatio );
     camera.updateProjectionMatrix();
     console.log("rezised :P");
 }
