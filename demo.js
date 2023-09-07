@@ -86,10 +86,10 @@ let lampLight = new THREE.ShaderMaterial({
     vertexShader: vs,
     fragmentShader: fs,
     transparent:  true,
-    blending:  THREE.CustomBlending, 
-    blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.DstColorFactor,
-    blendDst:  THREE.OneFactor,
+    blending:  THREE.AdditiveBlending, 
+    // blendEquation:  THREE.AddEquation,
+    // blendSrc:  THREE.DstColorFactor,
+    // blendDst:  THREE.OneFactor,
 });
 
 let vaseLight = new THREE.ShaderMaterial({
@@ -97,10 +97,10 @@ let vaseLight = new THREE.ShaderMaterial({
     vertexShader: vs,
     fragmentShader: fs,
     transparent:  true,
-    blending:  THREE.CustomBlending, 
-    blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.DstColorFactor,
-    blendDst:  THREE.OneFactor,
+    blending:  THREE.AdditiveBlending, 
+    // blendEquation:  THREE.AddEquation,
+    // blendSrc:  THREE.DstColorFactor,
+    // blendDst:  THREE.OneFactor,
 });
 
 
