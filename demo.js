@@ -210,7 +210,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
 },undefined,function(error){console.error(error);});
 
-
+let newframe = true;
 // Recursive render Loop
 function render(t) {
     
