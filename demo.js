@@ -190,6 +190,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             if (child.name == "wall"){
                 child.renderOrder = 5;
                 child.material.blending = THREE.MultiplyBlending;
+                child.material.transparent = true;
             }
             
         }
