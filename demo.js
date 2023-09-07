@@ -37,7 +37,7 @@ renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use
 renderer.toneMappingExposure = 5;
 
 window.renderer = renderer;
-
+window.scene = scene;
 
 // LIGHT ////////////////
 const light = new THREE.HemisphereLight( "#fff", 0x080820, 1 );
@@ -173,14 +173,14 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 child.renderOrder = 1;
                 child.material = lampLight;
                 console.log("Lamp Diffuse", child);
-                // child.clone();
+                child.clone();
             }
             
             if (child.name == "Bounce_Light_Area"){
                 child.renderOrder = 1;
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
-                // child.clone();
+                child.clone();
             }
 
             // if (child.name == "wall"){
