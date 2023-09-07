@@ -1,5 +1,10 @@
 // Consider reimplementing in Babylon.js, apparently it can look better and has superior AR support.
 
+// IMPORTANT NOTE. Proper usage of the light maps is to multiply the background by (1. + lightIntensity * lightMap)
+// I was not able to get this working with three.js, but this is absolutely necessary to get decent looking results.
+// Additive is not physically correct and looks terrible compared to how it could. Please reimplement properly in
+// babylon.js, or anything else really. Three.js is weird, it would be best not to waste time continuing to try 
+// to make it work here.
 
 
 import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
@@ -64,7 +69,7 @@ varying vec2 vUv;
 
 void main() {
     vec2 rUv = vUv;
-    rUv.y = rUv.y * -1. + 1.; // Seems backwards
+    rUv.y = rUv.y * -1. + 1.; // UV y exported backwards??
     gl_FragColor = texture2D(tex, rUv);
 }
 `
@@ -118,8 +123,6 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
     speaker.traverse( (child) => {
         if (child.isMesh) {
             child.material.envMap = scene.environment;
-            // child.material.color.multiplyScalar(.2);
-            // child.material.emissive.multiplyScalar(.2);
             meshes.push(child);
             child.renderOrder = 10;
             
@@ -146,24 +149,26 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             if (child.name == "screen"){ // TV Screen
 
                 const video = document.getElementById("video");
-                video.onloadeddata = () => { video.play(); };
+                video.onloadeddata = () => { 
+                    const videoTexture = new THREE.VideoTexture(video);
+                    videoTexture.encoding = THREE.sRGBEncoding;
+                    videoTexture.needsUpdate = true;
+                    const videoMaterial = new THREE.MeshStandardMaterial({
+                        color: 0x0,
+                        emissive: 0xffffff,
+                        emissiveMap: videoTexture,
+                        side: THREE.FrontSide,
+                        emissiveIntensity: 1,
+                        toneMapped: true,
+                        roughness: 0,
+                        envMap: child.material.envMap
+                    });
+                    videoMaterial.needsUpdate = true;
+                    child.material = videoMaterial;
 
-                const videoTexture = new THREE.VideoTexture(video);
-                videoTexture.encoding = THREE.sRGBEncoding;
-                videoTexture.needsUpdate = true;
-                const videoMaterial = new THREE.MeshStandardMaterial({
-                    color: 0x0,
-                    emissive: 0xffffff,
-                    emissiveMap: videoTexture,
-                    side: THREE.FrontSide,
-                    emissiveIntensity: 1,  
-                    toneMapped: true,
-                    // metalness: 0,
-                    roughness: 0,
-                    envMap: child.material.envMap
-                });
-                videoMaterial.needsUpdate = true;
-                child.material = videoMaterial;
+                    video.play();                 
+                };
+
                 
                 console.log("Screen", child);
                 console.log("Texture", child.material.map);
@@ -222,7 +227,11 @@ function render(t) {
     // If !newframe, accumulate, otherwise render new frame
     
 
-    let newframe = animAction.time != slider.value;
+    //let newframe = animAction.time != slider.value; // Only render again when the slider moves and therefore scene has changed
+    // Well now that the video is working, we'd better render it every frame. 
+    newframe = true;
+
+
     if (camera){ // serves to make sure camera exists for render call, makes sure model is loaded and stuff initialized for DOM stuff
         if (newframe){
             setAnimTime(slider.value);
