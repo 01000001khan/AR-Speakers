@@ -70,7 +70,7 @@ varying vec2 vUv;
 void main() {
     vec2 rUv = vUv;
     rUv.y = rUv.y * -1. + 1.; // UV y exported backwards??
-    gl_FragColor = texture2D(tex, rUv);
+    gl_FragColor = texture2D(tex, rUv)*.5;
 }
 `
 
@@ -150,6 +150,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
 
                 const video = document.getElementById("video");
                 video.onloadeddata = () => { video.play(); };
+
                 const videoTexture = new THREE.VideoTexture(video);
                 videoTexture.encoding = THREE.sRGBEncoding;
                 videoTexture.needsUpdate = true;
@@ -175,25 +176,13 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 child.renderOrder = 1;
                 child.material = lampLight;
                 console.log("Lamp Diffuse", child);
-                // child.clone();
-                // let mesh = new THREE.Mesh( child.geometry, child.material );
-                // mesh.position.set(0, 0, 0 );
-                // scene.add( mesh );
             }
             
             if (child.name == "Bounce_Light_Area"){
                 child.renderOrder = 1;
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
-                // scene.add(child.clone());
-                // scene.add(child.clone());
             }
-
-            // if (child.name == "wall"){
-            //     child.renderOrder = 5;
-            //     child.material.blending = THREE.MultiplyBlending;
-            //     child.material.transparent = true;
-            // }
             
         }
     });

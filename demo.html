@@ -14,59 +14,15 @@
 
   <div class="container">
     <h1 style="text-align: center;">Decor C1 Demo Page</h1>
+    <a href="https://01000001khan.github.io/AR-Speakers/testing.html">See the model in model-viewer</a>
   </div><br>
 
   <video id="video" playsinline webkit-playsinline muted loop autoplay height="1080" 
     src="./assets/textures/particles.mp4" style="position: absolute; pointer-events: none; opacity: 0;">
   </video>
+  <input type="range" min="0" max="0.99" step="0.01" value="0.5" oninput="animationUpdate(this)" id="slider">
   <div id="stuff"></div>
   <script type="module" src="demo.js"></script>
-
-  <div class="container">
-    <model-viewer ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1" shadow-softness="1"
-      enable-pan autoplay ar-placement="wall" environment-image="neutral" src="assets/models/decor/decorC1 b.glb" id="walldemo">
-      <input type="range" min="0" max="0.99" step="0.01" value="0.5" oninput="animationUpdate(this)" id="slider">
-    </model-viewer>
-  </div>
-
-
-  <script>
-    function animationUpdate(elem) {
-      elem.parentElement.pause();
-      elem.parentElement.currentTime = elem.value;
-
-      setTimeout(() => {
-        elem.parentElement.pause();
-      }, 2500);
-    }
-
-    document.querySelectorAll('model-viewer').forEach((e)=>{
-        e.onload = ()=>{
-          animationUpdate(e.firstChild);
-        };
-    });
-
-    const wall = document.querySelector("#walldemo");
-    wall.onload = () => {
-      screenTexture(wall, 1)
-    }
-
-    function screenTexture(elem, i) {
-      mat = elem.model.getMaterialByName('Ecran')["emissiveTexture"];
-      video = elem.createVideoTexture("./assets/textures/particles.mp4");
-
-
-      setTimeout(() => {
-        console.log("Screen attempt:", i)
-        if (document.readyState === "complete") {
-          mat.setTexture(video);
-          elem.pause();
-        } else {
-          screenTexture(elem, i++);
-        }
-      }, 500);
-    }  
-  </script>
 
 </body>
 </html>
