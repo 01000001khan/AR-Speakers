@@ -86,10 +86,10 @@ let lampLight = new THREE.ShaderMaterial({
     vertexShader: vs,
     fragmentShader: fs,
     transparent:  true,
-    blending:  THREE.AdditiveBlending, 
+    blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc:  THREE.OneFactor,
-    blendDst:  THREE.ZeroFactor,
+    blendSrc:  THREE.DstColorFactor,
+    blendDst:  THREE.OneFactor,
 });
 
 let vaseLight = new THREE.ShaderMaterial({
@@ -97,12 +97,10 @@ let vaseLight = new THREE.ShaderMaterial({
     vertexShader: vs,
     fragmentShader: fs,
     transparent:  true,
-    blending:  THREE.AdditiveBlending, 
+    blending:  THREE.CustomBlending, 
     blendEquation:  THREE.AddEquation,
-    blendSrc: THREE.OneFactor,
-    blendDst: THREE.ZeroFactor,
-    // blendSrc:  THREE.DstColorFactor,
-    // blendDst:  THREE.OneFactor,
+    blendSrc:  THREE.DstColorFactor,
+    blendDst:  THREE.OneFactor,
 });
 
 
@@ -175,23 +173,21 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 child.renderOrder = 1;
                 child.material = lampLight;
                 console.log("Lamp Diffuse", child);
-                child.clone();
-                child.clone();
+                // child.clone();
             }
             
             if (child.name == "Bounce_Light_Area"){
                 child.renderOrder = 1;
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
-                child.clone();
-                child.clone();
+                // child.clone();
             }
 
-            if (child.name == "wall"){
-                child.renderOrder = 5;
-                child.material.blending = THREE.MultiplyBlending;
-                child.material.transparent = true;
-            }
+            // if (child.name == "wall"){
+            //     child.renderOrder = 5;
+            //     child.material.blending = THREE.MultiplyBlending;
+            //     child.material.transparent = true;
+            // }
             
         }
     });
