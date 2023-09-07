@@ -173,14 +173,18 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 child.renderOrder = 1;
                 child.material = lampLight;
                 console.log("Lamp Diffuse", child);
-                child.clone();
+                // child.clone();
+                let mesh = new THREE.Mesh( child.geometry, child.material );
+                mesh.position.set( i * 100, 0, 0 );
+                scene.add( mesh );
             }
             
             if (child.name == "Bounce_Light_Area"){
                 child.renderOrder = 1;
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
-                child.clone();
+                scene.add(child.clone());
+                scene.add(child.clone());
             }
 
             // if (child.name == "wall"){
