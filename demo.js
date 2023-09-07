@@ -175,7 +175,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 console.log("Lamp Diffuse", child);
                 // child.clone();
                 let mesh = new THREE.Mesh( child.geometry, child.material );
-                mesh.position.set( i * 100, 0, 0 );
+                mesh.position.set(0, 0, 0 );
                 scene.add( mesh );
             }
             
