@@ -55,28 +55,23 @@ new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) 
 
 const vs = `
 varying vec2 vUv;
-varying vec3 vposition;
 
 void main() {
     vUv = uv;
     vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * modelViewPosition;
-    vposition = (modelViewMatrix  * vec4(position, 1.0)).xyz;
 }
 `
 
 const fs = `
 uniform sampler2D tex;
 varying vec2 vUv;
-varying vec3 vposition;
 
 void main() {
     vec2 rUv = vUv;
     rUv.y = rUv.y * -1. + 1.; // UV y exported backwards??
     gl_FragColor = texture2D(tex, rUv)*.5; // Reduced intensity for additive. 
     // When multiplying, the background should be multiplied by 1 + map*lightStrength but hdr shader output is not supported :(
-
-    gl_FragColor = vposition;
 }
 `
 
@@ -188,11 +183,6 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                 child.renderOrder = 1;
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
-            }
-
-            if (child.name == "wall"){
-                child.material.normalMap = null;
-                // just ignoring it for testing purposes...
             }
             
         }
