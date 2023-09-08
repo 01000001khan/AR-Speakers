@@ -27,21 +27,21 @@
     <br>
     <br>
     <h3>This is how it <em>can</em> look when implemented properly, and what I was originally aiming for.</h3>
-    
+
     <div style="width: 100%; aspect-ratio: 16/9; background-size: contain; background-image: url('./assets/textures/base.png');">
       <div style="width: 100%; aspect-ratio: 16/9; background-size: contain; background-image: url('./assets/textures/base.png'); mix-blend-mode: screen;">
-        <div id="lamp" style="width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/lamp.png'); 
+        <div id="lamp" style="position: absolute; left: 0; top: 0; margin: 0; width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/lamp.png'); 
           background-color: rgb(255, 196, 0); background-blend-mode: multiply; mix-blend-mode: multiply;">
         </div>
-        <div id="vase" style="width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/vase.png'); 
+        <div id="vase" style="position: absolute; left: 0; top: 0; margin: 0; width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/vase.png'); 
           background-color: white; background-blend-mode: multiply; mix-blend-mode: multiply;">
         </div>
       </div>
     </div>
 
-    <input type="color" value="#e66465" onchange="changeCol(this, 1)" />
-    <input type="color" value="#FFFFFF" onchange="changeCol(this, 0)" />
-    <input type="range" value=".5" min="0" max="1" step="0.01" oninput="vase.opacity = this.value" onload="vase.opacity = this.value" />
+    <input type="color" value="#e66465" onload="changeCol(this.value, 1)" />
+    <input type="color" value="#FFFFFF" onload="changeCol(this.value, 0)" />
+    <input type="range" value=".5" min="0" max="1" step="0.01" oninput="things[0].opacity = this.value" onload="things[0].opacity = this.value" />
   </div><br>
 
   <script>
@@ -51,7 +51,10 @@
     ];
 
     function changeCol(col, target){
-      things[target].backgroundColor = col.value;
+      setInterval((e)=>{
+        things[target].backgroundColor = col;
+        console.log(col);
+      }, 100);
     }
   </script>
 
