@@ -40,8 +40,8 @@
 
     </div>
 
-    <input type="color" value="#e66465" onload="changeCol(this, '#lamp')" />
-    <input type="color" value="#FFFFFF" onload="changeCol(this, '#vase')" />
+    <input type="color" value="#e66465" oninput="changeCol(this, '#lamp', 0)" />
+    <input type="color" value="#FFFFFF" oninput="changeCol(this, '#vase', 1)" />
   </div><br>
 
   <script>
@@ -56,17 +56,17 @@
     }
 
     let things = [];
-    let x = 0;
 
-    function changeCol(col, target){
-      things.push(document.querySelectorAll(target))
-      setInterval((e)=>{
-        things[x].forEach((t)=>{
-          t.backgroundColor = col.value;
-        });
-        x++;
-        console.log(col.value);
-      }, 100);
+    function changeCol(col, target, x){
+      if (!things[x]) {
+        things[x] = document.querySelectorAll(target);
+      }
+
+      things[x].forEach((t)=>{
+        t.backgroundColor = col.value;
+      });
+      
+      console.log(col.value);
     }
   </script>
 
