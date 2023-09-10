@@ -28,32 +28,44 @@
     <br>
     <h3>This is how it <em>can</em> look when implemented properly, and what I was originally aiming for.</h3>
 
-    <div style="width: 100%; aspect-ratio: 16/9; background-size: contain; background-image: url('./assets/textures/base.png');">
-      <div style="width: 100%; aspect-ratio: 16/9; background-size: contain; background-image: url('./assets/textures/base.png'); mix-blend-mode: screen;">
-        <div id="lamp" style="position: absolute; left: 0; top: 0; margin: 0; width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/lamp.png'); 
-          background-color: rgb(255, 196, 0); background-blend-mode: multiply; mix-blend-mode: multiply;">
-        </div>
-        <div id="vase" style="position: absolute; left: 0; top: 0; margin: 0; width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/vase.png'); 
-          background-color: white; background-blend-mode: multiply; mix-blend-mode: multiply;">
-        </div>
-      </div>
+
+    <!-- This should be done with shaders https://github.com/actarian/glsl-canvas . Will fix if I have time. This CSS hack is horrible. -->
+    <div style="position: relative; width: 100%; aspect-ratio: 16/9; background-size: contain; background-image: url('./assets/textures/base.png');">
+
+      <div id="lamp" style="position: absolute; width: 100%; aspect-ratio: 16/9; margin: 0; z-index: 20; width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/lamp.png'), url('./assets/textures/base.png'); 
+          background-color: rgb(512, 255, 255); background-blend-mode: multiply; mix-blend-mode: screen"></div>
+
+      <div id="vase" style="position: absolute; width: 100%; aspect-ratio: 16/9; margin: 0; z-index: 20; width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/vase.png'), url('./assets/textures/base.png'); 
+          background-color: rgb(512, 255, 255); background-blend-mode: multiply; mix-blend-mode: screen"></div>
+
     </div>
 
-    <input type="color" value="#e66465" onload="changeCol(this.value, 1)" />
-    <input type="color" value="#FFFFFF" onload="changeCol(this.value, 0)" />
-    <input type="range" value=".5" min="0" max="1" step="0.01" oninput="things[0].opacity = this.value" onload="things[0].opacity = this.value" />
+    <input type="color" value="#e66465" onload="changeCol(this, '#lamp')" />
+    <input type="color" value="#FFFFFF" onload="changeCol(this, '#vase')" />
   </div><br>
 
   <script>
-    const things = [
-      document.querySelector('#vase'),
-      document.querySelector('#lamp')
-    ];
+    
+    let vase = document.querySelector('#vase');
+    let lamp = document.querySelector('#lamp');
+
+    for (let i = 0; i < 8; i++){
+      vase.parentElement.appendChild(vase.cloneNode());
+      lamp.parentElement.appendChild(lamp.cloneNode());
+      // Hacks. Should've been done with https://github.com/actarian/glsl-canvas 
+    }
+
+    let things = [];
+    let x = 0;
 
     function changeCol(col, target){
+      things.push(document.querySelectorAll(target))
       setInterval((e)=>{
-        things[target].backgroundColor = col;
-        console.log(col);
+        things[x].forEach((t)=>{
+          t.backgroundColor = col.value;
+        });
+        x++;
+        console.log(col.value);
       }, 100);
     }
   </script>
