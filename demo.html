@@ -20,7 +20,8 @@
     <h1 style="text-align: center;">Decor C1 Demo Page</h1>
     <a href="https://01000001khan.github.io/AR-Speakers/testing.html">See the model in model-viewer</a>
     <br>
-    <input type="range" min="0" max="0.99" step="0.01" value="0.5" id="slider">
+    <p id="size">Size</p>
+    <input type="range" min="0" max="0.99" step="0.01" value="0.5" id="slider" oninput='document.querySelector("#size").innerHTML = `Width: ${(this.value*57)+43}"`'>
     <div id="stuff"></div>
     <script type="module" src="demo.js"></script>
 
