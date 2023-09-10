@@ -37,13 +37,13 @@
           background-color: rgb(255, 213, 107); background-blend-mode: multiply; mix-blend-mode: screen"></div>
 
       <div id="vase" style="position: absolute; width: 100%; aspect-ratio: 16/9; margin: 0; z-index: 20; width: 100%; height: 100%;  background-size: contain; background-image: url('./assets/textures/vase.png'), url('./assets/textures/base.png'); 
-          background-color: rgb(136, 156, 168); background-blend-mode: multiply; mix-blend-mode: screen"></div>
+          background-color: #89A3A9; background-blend-mode: multiply; mix-blend-mode: screen"></div>
 
     </div>
 
 
     <input type="color" value="#FFD56B" oninput="changeCol(this, '#lamp', 0)" />
-    <input type="color" value="#88A888" oninput="changeCol(this, '#vase', 1)" />
+    <input type="color" value="#89A3A9" oninput="changeCol(this, '#vase', 1)" />
   </div><br>
 
   <script>
@@ -54,11 +54,11 @@
     for (let i = 0; i < 8; i++){
       vase.parentElement.appendChild(vase.cloneNode());
       lamp.parentElement.appendChild(lamp.cloneNode());
-      // Hacks. Should've been done with https://github.com/actarian/glsl-canvas 
+      // Hacks. Should've been done with https://github.com/actarian/glsl-canvas instead of CSS for direct control, but not sure if it actually would be more performant... CSS is generally pretty well optimized
     }
 
-    let things = [];
 
+    let things = [];
     function changeCol(col, target, x){
       if (!things[x]) {
         things[x] = document.querySelectorAll(target);
@@ -67,9 +67,8 @@
       things[x].forEach((t)=>{
         t.style.backgroundColor = col.value;
       });
-
-      //console.log(col.value);
     }
+
 
     let o = 0;
     let time = 0;
