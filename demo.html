@@ -70,6 +70,23 @@
 
       //console.log(col.value);
     }
+
+    let o = 0;
+    let time = 0;
+    function update(dt){
+
+      time += dt;
+      // Better to have than need and not
+      
+      o = Math.cos(Math.random());
+      things[0].forEach((t)=>{
+        t.style.opacity = o;
+      }); // Flickering
+
+      window.requestAnimationFrame(update);
+    }
+    window.requestAnimationFrame(update);
+
   </script>
 
 </body>
