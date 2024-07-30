@@ -38,7 +38,7 @@ let aspectRatio = 16/9;
 renderer.setClearColor("#FFF");
 renderer.setSize( slider.offsetWidth, slider.offsetWidth / aspectRatio );
 renderer.setPixelRatio( window.devicePixelRatio );
-renderer.toneMapping = THREE.ACESFilmicToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
+renderer.toneMapping = THREE.AgXToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
 renderer.toneMappingExposure = 2;
 
 window.renderer = renderer;
