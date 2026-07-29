@@ -7,10 +7,9 @@
 // to make it work here.
 
 
-import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
-import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
-import { RGBELoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/RGBELoader.js';
-
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { HDRLoader  } from 'three/addons/loaders/HDRLoader.js';
 
 
 // Three.js stuff
@@ -38,17 +37,17 @@ let aspectRatio = 16/9;
 renderer.setClearColor("#FFF");
 renderer.setSize( slider.offsetWidth, slider.offsetWidth / aspectRatio );
 renderer.setPixelRatio( window.devicePixelRatio );
-renderer.toneMapping = THREE.AgXToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
-renderer.toneMappingExposure = 2;
+renderer.toneMapping = THREE.NeutralToneMapping; // Optimally I'd like to use a custom tonemapping config, specifically https://github.com/bean-mhm/grace
+renderer.toneMappingExposure = .1;
 
 window.renderer = renderer;
 window.scene = scene;
 
 // Light
-const light = new THREE.HemisphereLight( "#fff", 0x080820, 2 );
+const light = new THREE.HemisphereLight( "#fff", 0x080820, 20 );
 scene.add( light );
 
-new RGBELoader().load( './assets/textures/leadenhall.hdr', function ( texture ) { // Replace with a more neutral skybox
+new HDRLoader().load( './assets/textures/leadenhall.hdr', function ( texture ) { // Replace with a more neutral skybox
     texture.mapping = THREE.EquirectangularReflectionMapping;
     scene.environment = texture;
 });
@@ -70,7 +69,7 @@ varying vec2 vUv;
 void main() {
     vec2 rUv = vUv;
     rUv.y = rUv.y * -1. + 1.; // UV y exported backwards??
-    gl_FragColor = texture2D(tex, rUv)*.5; // Reduced intensity for additive. 
+    gl_FragColor = texture2D(tex, rUv)*.3; // Reduced intensity for additive. 
     // When multiplying, the background should be multiplied by 1 + map*lightStrength but hdr shader output is not supported :(
 }
 `
@@ -92,10 +91,11 @@ let lampLight = new THREE.ShaderMaterial({
     vertexShader: vs,
     fragmentShader: fs,
     transparent:  true,
-    blending:  THREE.AdditiveBlending, 
-    // blendEquation:  THREE.AddEquation,
-    // blendSrc:  THREE.DstColorFactor,
-    // blendDst:  THREE.OneFactor,
+    blending:  THREE.CustomBlending, 
+    blendEquation:  THREE.AddEquation,
+    blendSrc:  THREE.DstColorFactor,
+    blendSrc:  THREE.OneFactor,
+    blendDst:  THREE.OneFactor,
 });
 
 let vaseLight = new THREE.ShaderMaterial({
@@ -103,10 +103,11 @@ let vaseLight = new THREE.ShaderMaterial({
     vertexShader: vs,
     fragmentShader: fs,
     transparent:  true,
-    blending:  THREE.AdditiveBlending, 
-    // blendEquation:  THREE.AddEquation,
-    // blendSrc:  THREE.DstColorFactor,
-    // blendDst:  THREE.OneFactor,
+    blending:  THREE.CustomBlending, 
+    blendEquation:  THREE.AddEquation,
+    blendSrc:  THREE.DstColorFactor,
+    blendSrc:  THREE.OneFactor,
+    blendDst:  THREE.OneFactor,
 });
 
 
@@ -128,10 +129,14 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             child.renderOrder = 10;
             
 
-
             if (child.name.includes("Plant")){
                 // Sort all the foliage after the background
                 child.renderOrder = 100;
+            }
+
+            if (child.name == "Lamp"){
+                child.children[1].material.emissiveIntensity = 10;
+                console.log(child.children[1])
             }
 
             if (child.name == "vase"){
@@ -160,7 +165,7 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
                     emissive: 0xffffff,
                     emissiveMap: videoTexture,
                     side: THREE.FrontSide,
-                    emissiveIntensity: 1,
+                    emissiveIntensity: 10,
                     toneMapped: true,
                     roughness: 0,
                     envMap: child.material.envMap
@@ -174,16 +179,17 @@ loader.load( './assets/models/decor/decorC1 render quality.glb', ( gltf ) => {
             }
 
             if (child.name == "Bounce_Light"){
-                child.renderOrder = 1;
                 child.material = lampLight;
                 console.log("Lamp Diffuse", child);
             }
             
             if (child.name == "Bounce_Light_Area"){
-                child.renderOrder = 1;
                 child.material = vaseLight;
                 console.log("Vase Diffuse", child);
             }
+
+            child.material.envMapIntensity = 10;
+
             
         }
     });
