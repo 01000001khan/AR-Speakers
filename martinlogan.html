@@ -10,13 +10,15 @@
   <link rel="stylesheet" href="universal.css"></head>
 <body>
   <div class="container">
-    <form action="https://01000001khan.github.io/AR-Speakers/index.html">
+    <form action="/index.html">
       <input type="submit" value="Home" />
     </form>
-    <form action="https://01000001khan.github.io/AR-Speakers/motion.html">
+    <form action="/motion.html">
       <input type="submit" value="Motion Series" />
     </form>
   
+    <model-viewer ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/martinlogan/dynamo/Dynamo IW.glb">
+    </model-viewer>    
     <p>Exploded Woofer AR</p>
     <model-viewer ar ar-modes="webxr scene-viewer quick-look" autoplay camera-controls shadow-intensity="1" shadow-softness="1" enable-pan auto-rotate src="assets/models/general/woofer.glb">
     </model-viewer>    
