@@ -22,12 +22,12 @@
 <body>
 
   <video id="video" playsinline webkit-playsinline muted loop autoplay height="1080" 
-    src="./assets/textures/particles.mp4" style="position: absolute; pointer-events: none; opacity: 0;">
+    src="assets/textures/particles.mp4" style="position: absolute; pointer-events: none; opacity: 0;">
   </video>
 
   <div class="container">
     <h1 style="text-align: center;">Decor C1 Demo Page</h1>
-    <a href="/testing.html">See the model in model-viewer</a>
+    <a href=/testing.html">See the model in model-viewer</a>
     <br>
     <p id="size">Size</p>
     <input type="range" min="0" max="0.99" step="0.01" value="0.5" id="slider" oninput='document.querySelector("#size").innerHTML = `Width: ${Math.trunc(((this.value*57)+43)*10)/10}"`'>
